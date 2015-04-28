@@ -2,17 +2,35 @@
     <div class="col-lg-3">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
-            <div class="panel-heading">Add the mobile</div>
-
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-plus"></span>Add the mobile</div>
             <div class="panel-body">
-                Heloo
+                <form ng-model="addForm" name="addForm" ng-submit="submitaddForm(addForm.$valid)">
+                    <div class="form-group">
+                        <label for="brand">Brand</label>
+                        <input type="email" class="form-control" id="brand" placeholder="Brand">
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="password" class="form-control" id="model" placeholder="Model">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="password" class="form-control" id="price"  placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="password" class="form-control" id="quantity" placeholder="Quantity">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
             </div>
         </div>
     </div>
     <div class="col-lg-5">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
-            <div class="panel-heading">Inventory List</div>
+            <div class="panel-heading"><span class="glyphicon glyphicon-folder-open"></span>Inventory List</div>
 
             <div class="panel-body">
                 <table class="table">
