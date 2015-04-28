@@ -1,23 +1,36 @@
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-3">
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Add the mobile</div>
 
+            <div class="panel-body">
+                Heloo
+            </div>
+        </div>
     </div>
-    <div class="col-lg-7">
-        <div class="panel panel-default">
+    <div class="col-lg-5">
+        <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">Inventory List</div>
 
             <div class="panel-body">
                 <table class="table">
-                    <thead>
-                    <th>ID</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <thead id="thead">
+                        <th>ID</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
                     </thead>
-                    <tbody>
-
+                    <tbody id="tbody">
+                        <tr ng-repeat="mobile in phones">
+                            <td>{{ 1 + 1 }}</td>
+                            <td>{{ }}</td>
+                            <td>{{ }}</td>
+                            <td>{{ }}</td>
+                            <td>{{ }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
