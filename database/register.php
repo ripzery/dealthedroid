@@ -8,5 +8,13 @@ $user = R::dispense('users');
 $user->username = $username;
 $user->password = sha1($password);
 $user->role = "user";
-$id = R::store($user);
-echo "User ". $user->username . " has been save successfully.";
+try{
+    $id = R::store($user);
+}catch(Exception $e){
+    echo "Username " . $username . " is already taken.";
+    return;
+}
+
+if($id != null){
+    echo "User ". $user->username . " has been save successfully.";
+}
