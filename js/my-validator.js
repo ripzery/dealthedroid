@@ -26,7 +26,7 @@ validator.controller('FormController', function ($scope, $http) {
             .done(function (result) {
                 $scope.loginStatus = result;
                 if (result)
-                    window.location.href = "main/management.html";
+                    window.location.href = "main/management.html#/home";
             });
     };
 
