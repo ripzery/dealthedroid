@@ -17,9 +17,18 @@ app.config(function ($routeProvider) {
 });
 
 app.controller('mainController', function ($scope,$location) {
+
+
     $scope.isActive = function(route){
         return route === $location.path();
     }
+    $.post('../database/inventory.php')
+        .done(function (result) {
+            var rawData = JSON.parse(result);
+            $scope.data = rawData;
+            $scope.$apply();
+            //alert(rawData);
+        });
 });
 app.controller('sellController', function ($scope,$location) {
     $scope.isActive = function(route){
@@ -31,51 +40,3 @@ app.controller('financialController', function ($scope,$location) {
         return route === $location.path();
     }
 });
-
-
-//$(document).ready(function () {
-//
-//    //setContent('home');
-//    //setInventory();
-//
-//    $('.navbar li').click(function (e) {
-//        e.preventDefault();
-//        $(this).tab('show');
-//        var index = $(this).index();
-//        switch (index) {
-//            case 0:
-//                setContent('home');
-//                //setInventory();
-//                break;
-//            case 1:
-//                setContent('sell');
-//                break;
-//            case 2:
-//                setContent('financial');
-//                break;
-//        }
-//        //alert($(this).index());
-//    });
-//
-//});
-
-function setContent(page) {
-    //var url = "../main/" + page + ".html";
-    //$.get(url, function (data) {
-    //    $(".container-home").html(data);
-    //});
-    //var url = "<div ng-include=\"\'" + page + ".html\'\"></div>";
-    //
-    // $(".container-home").html(url);
-    // alert($(".container-home").html());
-    return page + ".html";
-
-}
-
-function getInventory() {
-    $.post('../database/inventory.php')
-        .done(function (result) {
-            var rawData = JSON.parse(result);
-            return rawData;
-        });
-}

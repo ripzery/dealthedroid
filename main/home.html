@@ -24,12 +24,12 @@
                         <th>Quantity</th>
                     </thead>
                     <tbody id="tbody">
-                        <tr ng-repeat="mobile in phones">
-                            <td>{{ 1 + 1 }}</td>
-                            <td>{{ }}</td>
-                            <td>{{ }}</td>
-                            <td>{{ }}</td>
-                            <td>{{ }}</td>
+                        <tr ng-repeat="mobile in data">
+                            <td>{{ mobile.id }}</td>
+                            <td>{{ mobile['brandid'] }}</td>
+                            <td>{{ mobile['model'] }}</td>
+                            <td>{{ mobile['price'] }}</td>
+                            <td>{{ mobile['amount'] }}</td>
                         </tr>
                     </tbody>
                 </table>
