@@ -12,7 +12,7 @@
 }
 
 *{
-    font-family: regular-font;
+    /*font-family: regular-font;*/
 }
 
 body{
@@ -55,7 +55,7 @@ h3{
 }
 
 label{
-    /*color: #FFFFFF;*/
+    font-family: light-font;
     font-size: 17px;
 }
 

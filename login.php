@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <!-- Custom CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<!--    <link href='css/app.css' rel='stylesheet' type='text/css'>-->
+    <link href='css/app.css' rel='stylesheet' type='text/css'>
     <link href='css/style.css' rel='stylesheet' type='text/css'>
     <link href='css/bootstrap-vertical-grid.css' rel='stylesheet' type='text/css'>
     <script src="library/js/angular.min.js"></script>

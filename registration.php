@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <!--    <link href='css/app.css' rel='stylesheet' type='text/css'>-->
+        <link href='css/app.css' rel='stylesheet' type='text/css'>
     <link href='css/style.css' rel='stylesheet' type='text/css'>
     <link href='css/bootstrap-vertical-grid.css' rel='stylesheet' type='text/css'>
     <script src="library/js/jquery.js"></script>
