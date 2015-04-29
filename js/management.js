@@ -18,6 +18,14 @@ app.config(function ($routeProvider) {
 
 app.controller('mainController', function ($scope,$location) {
 
+    $scope.brandrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
+    $scope.modelrule = "mobileForm.model.$invalid && mobileForm.model.$dirty";
+    $scope.pricerule = "mobileForm.price.$invalid && mobileForm.price.$dirty ";
+    $scope.quantityrule = "mobileForm.quantity.$invalid && mobileForm.quantity.$dirty";
+
+    $scope.submitmobileForm = function(isValid){
+
+    };
 
     $scope.isActive = function(route){
         return route === $location.path();

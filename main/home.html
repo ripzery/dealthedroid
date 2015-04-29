@@ -5,22 +5,42 @@
             <div class="panel-heading">
                 <span class="glyphicon glyphicon-plus"></span>Add the mobile</div>
             <div class="panel-body">
-                <form ng-model="addForm" name="addForm" ng-submit="submitaddForm(addForm.$valid)">
-                    <div class="form-group">
-                        <label for="brand">Brand</label>
-                        <input type="email" class="form-control" id="brand" placeholder="Brand">
+                <form ng-model="mobileForm" name="mobileForm" ng-submit="submitmobileForm(mobileForm.$valid)" novalidate method="post">
+                    <div class="form-group" ng-class="{'has-error' : {{brandrule}}}">
+                        <label for="brandid">Brand</label>
+                        <input class="form-control" name="brandid" id="brandid" ng-model="brandid"  maxlength="2" pattern="[0-9]" required placeholder="Brand">
+                        <div>
+                            <p class="help-block" ng-show=" !mobileForm.brandid.$pristine && mobileForm.brandid.$error.required">Brand is required!</p>
+                            <p class="help-block" ng-show=" !mobileForm.brandid.$pristine && mobileForm.brandid.$error.pattern">BrandID must be a number!</p>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : {{modelrule}}}">
                         <label for="model">Model</label>
-                        <input type="password" class="form-control" id="model" placeholder="Model">
+                        <input type="text" class="form-control" name="model" id="model" ng-model="model" required pattern="[a-zA-Z0-9]+" placeholder="Model">
+
+                        <div>
+                            <p class="help-block" ng-show=" mobileForm.model.$error.required && !mobileForm.model.$pristine "> Model is required! </p>
+                            <p class="help-block" ng-show=" mobileForm.model.$error.pattern && !mobileForm.model.$pristine "> Model isn't match the pattern! </p>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : {{pricerule}} }">
                         <label for="price">Price</label>
-                        <input type="password" class="form-control" id="price"  placeholder="Price">
+                        <input class="form-control" name="price" id="price" ng-model="price" required pattern="[0-9]+" placeholder="Price">
+
+                        <div>
+                            <p class="help-block" ng-show=" mobileForm.price.$error.required && !mobileForm.price.$pristine"> Price is required!</p>
+                            <p class="help-block" ng-show=" mobileForm.price.$error.pattern && !mobileForm.price.$pristine">Price must be a number!</p>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : {{quantityrule}} }">
                         <label for="quantity">Quantity</label>
-                        <input type="password" class="form-control" id="quantity" placeholder="Quantity">
+                        <input class="form-control" id="quantity" name="quantity" ng-model="quantity" required pattern="[0-9]+" placeholder="Quantity">
+
+                        <div>
+                            <p class="help-block" ng-show=" mobileForm.quantity.$error.required && !mobileForm.quantity.$pristine">Quantity is required!</p>
+                            <p class="help-block" ng-show=" mobileForm.quantity.$error.pattern && !mobileForm.quantity.$pristine">Quantity must be a number!</p>
+                        </div>
+
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>

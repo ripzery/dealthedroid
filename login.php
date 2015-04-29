@@ -18,7 +18,7 @@
 <div class="container" ng-app="formValidator" ng-controller="FormController">
 
     <?php
-    include("header.php");
+        include("header.php");
     ?>
     <div class="row-xs-2"></div>
     <div class="row-xs-8">
