@@ -20,6 +20,8 @@ app.controller('mainController', function ($scope, $location, $http) {
     $scope.duplicateModel = false;
     $scope.currentPage = 1;
     $scope.pageSize = 3;
+    //$scope.brandPageSize = 3;
+    //$scope.currentBrandPage = 1;
     $scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
     $scope.brandrule = "brandForm.brand.$invalid && brandForm.brand.$dirty";
     $scope.modelrule = "mobileForm.model.$invalid && mobileForm.model.$dirty || duplicateModel";
@@ -60,9 +62,17 @@ app.controller('mainController', function ($scope, $location, $http) {
         }
     };
 
+    $scope.submitbrandForm = function (isValid){
+        $http.post('../database/add_brand.php',{
+            name: $scope.brand
+        }).success(function (data, status, headers, config){
+                alert(data);
+        });
+    }
     $scope.isActive = function (route) {
         return route === $location.path();
     }
+
     $.post('../database/inventory.php')
         .done(function (result) {
             var rawData = JSON.parse(result);
@@ -70,6 +80,19 @@ app.controller('mainController', function ($scope, $location, $http) {
             $scope.$apply();
             //alert(rawData);
         });
+
+    //$('#myModal').on('shown.bs.modal', function() {
+    //    $("#brand").focus();
+    //    $.post('../database/get_brand.php')
+    //        .done(function (data){
+    //            //alert(data);
+    //            var b = JSON.parse(data);
+    //            $scope.brands = b;
+    //            //alert(b);
+    //            $scope.$apply();
+    //            //alert($scope.brands);
+    //        });
+    //});
 });
 app.controller('sellController', function ($scope, $location) {
     $scope.isActive = function (route) {
