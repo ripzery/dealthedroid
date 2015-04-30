@@ -11,8 +11,7 @@
                     <div class="form-group">
                         <label for="selectBrand" style="margin-right: 10px;">Select brand : </label>
                         <div class="btn-group" id="selectBrand">
-                            <select class="form-control" ng-options="brand.id as brand.name for brand in brands" onchange="kuy()"
-                                    ng-model="selectedItem"></select>
+                            <select class="form-control" ng-options="brand.id as brand.name for brand in brands" ng-model="selectedItem"></select>
                             <!--<select class="form-control" id="sel1" ng-model="selectBrand">-->
                                 <!--<option ng-repeat="brand in brands">{{brand.name}}</option>-->
                             <!--</select>-->
@@ -114,7 +113,6 @@
                 </div>
                 <table class="table">
                     <thead id="thead">
-                    <th>ID</th>
                     <th>Brand</th>
                     <th>Model</th>
                     <th>Price</th>
@@ -123,8 +121,7 @@
                     <tbody id="tbody">
                     <tr dir-paginate="mobile in data | filter: q | itemsPerPage: pageSize" current-page="currentPage"
                         pagination-id="mobile-page">
-                        <td>{{ mobile.id }}</td>
-                        <td>{{ mobile['brandid'] }}</td>
+                        <td>{{ mobile['brand']['name'] }}</td>
                         <td>{{ mobile['model'] }}</td>
                         <td>{{ mobile['price'] }}</td>
                         <td>{{ mobile['quantity'] }}</td>

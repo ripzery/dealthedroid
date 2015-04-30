@@ -20,7 +20,7 @@ app.controller('mainController', function ($scope, $location, $http) {
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
     $scope.currentPage = 1;
-    $scope.pageSize = 3;
+    $scope.pageSize = 30;
     //$scope.brandPageSize = 3;
     //$scope.currentBrandPage = 1;
     //$scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
@@ -52,12 +52,11 @@ app.controller('mainController', function ($scope, $location, $http) {
                 quantity: $scope.quantity
             }).success(function (data, status, headers, config) {
                 if (data) {
-                    alert(data);
                     $scope.duplicateModel = false;
-                    $scope.data.push(data);
+                    $scope.data.push(data[0]);
                 }
                 else {
-                    alert(data);
+                    //alert(data);
                     $scope.duplicateModel = true;
                 }
 
@@ -70,7 +69,6 @@ app.controller('mainController', function ($scope, $location, $http) {
             name: $scope.brand
         }).success(function (data, status, headers, config) {
             if (data) {
-                alert(data);
                 $scope.duplicateBrand = false;
                 $scope.brands.push(data);
             } else {
