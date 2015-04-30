@@ -1,4 +1,4 @@
-var app = angular.module('management', ['ngRoute','angularUtils.directives.dirPagination']);
+var app = angular.module('management', ['ngRoute', 'angularUtils.directives.dirPagination']);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -18,12 +18,13 @@ app.config(function ($routeProvider) {
 
 app.controller('mainController', function ($scope, $location, $http) {
     $scope.duplicateModel = false;
+    $scope.duplicateBrand = false;
     $scope.currentPage = 1;
     $scope.pageSize = 3;
     //$scope.brandPageSize = 3;
     //$scope.currentBrandPage = 1;
-    $scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
-    $scope.brandrule = "brandForm.brand.$invalid && brandForm.brand.$dirty";
+    //$scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
+    $scope.brandrule = "brandForm.brand.$invalid && brandForm.brand.$dirty || duplicateBrand";
     $scope.modelrule = "mobileForm.model.$invalid && mobileForm.model.$dirty || duplicateModel";
     $scope.pricerule = "mobileForm.price.$invalid && mobileForm.price.$dirty ";
     $scope.quantityrule = "mobileForm.quantity.$invalid && mobileForm.quantity.$dirty";
@@ -51,10 +52,12 @@ app.controller('mainController', function ($scope, $location, $http) {
                 quantity: $scope.quantity
             }).success(function (data, status, headers, config) {
                 if (data) {
+                    alert(data);
                     $scope.duplicateModel = false;
                     $scope.data.push(data);
                 }
                 else {
+                    alert(data);
                     $scope.duplicateModel = true;
                 }
 
@@ -62,11 +65,18 @@ app.controller('mainController', function ($scope, $location, $http) {
         }
     };
 
-    $scope.submitbrandForm = function (isValid){
-        $http.post('../database/add_brand.php',{
+    $scope.submitbrandForm = function (isValid) {
+        $http.post('../database/add_brand.php', {
             name: $scope.brand
-        }).success(function (data, status, headers, config){
+        }).success(function (data, status, headers, config) {
+            if (data) {
                 alert(data);
+                $scope.duplicateBrand = false;
+                $scope.brands.push(data);
+            } else {
+                $scope.duplicateBrand = true;
+            }
+
         });
     }
     $scope.isActive = function (route) {
@@ -79,6 +89,13 @@ app.controller('mainController', function ($scope, $location, $http) {
             $scope.data = rawData;
             $scope.$apply();
             //alert(rawData);
+        });
+    $.post('../database/get_brand.php')
+        .done(function (data) {
+            //alert(data);
+            var b = JSON.parse(data);
+            $scope.brands = b;
+            $scope.$apply();
         });
 
     //$('#myModal').on('shown.bs.modal', function() {

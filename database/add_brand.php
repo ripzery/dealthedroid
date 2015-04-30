@@ -14,11 +14,8 @@ $brand->name = $request->name;
 try {
     $id =  R::store($brand);
 }catch(Exception $e){
-    echo $e;
     echo false;
     return;
 }
 
-
-//echo json_encode($brand->export());
-echo $id;
+echo json_encode($brand->export());
