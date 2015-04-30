@@ -28,6 +28,7 @@
                 <div class="panel-heading">
                     <h1 class="text-center">Login</h1>
                 </div>
+
                 <div class="panel-body">
                     <div
                         class="col-lg-10 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">

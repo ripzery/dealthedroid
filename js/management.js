@@ -19,7 +19,9 @@ app.config(function ($routeProvider) {
 app.controller('mainController', function ($scope, $location, $http) {
     $scope.duplicateModel = false;
     $scope.currentPage = 1;
-    $scope.brandrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
+    $scope.pageSize = 3;
+    $scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
+    $scope.brandrule = "brandForm.brand.$invalid && brandForm.brand.$dirty";
     $scope.modelrule = "mobileForm.model.$invalid && mobileForm.model.$dirty || duplicateModel";
     $scope.pricerule = "mobileForm.price.$invalid && mobileForm.price.$dirty ";
     $scope.quantityrule = "mobileForm.quantity.$invalid && mobileForm.quantity.$dirty";
