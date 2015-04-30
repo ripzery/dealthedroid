@@ -46,7 +46,7 @@ app.controller('mainController', function ($scope, $location, $http) {
             //});
 
             $http.post('../database/add_mobile.php', {
-                brandid: $scope.brandid,
+                brandid: $scope.selectedItem,
                 model: $scope.model,
                 price: $scope.price,
                 quantity: $scope.quantity
