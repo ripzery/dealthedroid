@@ -1,5 +1,7 @@
-# DEALTHEDROID - Simple warehouse management system project.
+# DEALTHEDROID
 --------------------------------------------------------------
+
+Simple warehouse management system project.
 
 This project is made of love and learn about how to code with angularjs and
 

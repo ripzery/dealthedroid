@@ -10,10 +10,12 @@
                       method="post">
                     <div class="form-group">
                         <label for="selectBrand" style="margin-right: 10px;">Select brand : </label>
+
                         <div class="btn-group" id="selectBrand">
-                            <select class="form-control" ng-options="brand.id as brand.name for brand in brands" ng-model="selectedItem"></select>
+                            <select class="form-control" ng-options="brand.id as brand.name for brand in brands"
+                                    ng-model="selectedItem"></select>
                             <!--<select class="form-control" id="sel1" ng-model="selectBrand">-->
-                                <!--<option ng-repeat="brand in brands">{{brand.name}}</option>-->
+                            <!--<option ng-repeat="brand in brands">{{brand.name}}</option>-->
                             <!--</select>-->
                         </div>
                     </div>
@@ -76,6 +78,7 @@
                         <label for="brand">Brand</label>
                         <input class="form-control" id="brand" name="brand" ng-model="brand"
                                pattern="[a-zA-Z0-9]+" placeholder="Brand name">
+
                         <div>
 
                             <p class="help-block"
@@ -109,9 +112,12 @@
                             <label for="search">items per page:</label>
                             <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
                         </div>
+                        <div class="col-xs-4">
+
+                        </div>
                     </div>
                 </div>
-                <table class="table">
+                <table id="mobile-table" class="table table-responsive">
                     <thead id="thead">
                     <th>Brand</th>
                     <th>Model</th>
@@ -130,9 +136,38 @@
                 </table>
             </div>
             <div class="panel-footer text-center">
-                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"
-                                         pagination-id="mobile-page"
-                                         template-url="../library/js/dirPagination.tpl.html"></dir-pagination-controls>
+                <div class="row">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"
+                                             pagination-id="mobile-page"
+                                             template-url="../library/js/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+                <div class="dropdown col-xs-offset-9">
+                        <button class="btn btn-warning dropdown-toggle" id="nav-locator-dropdown" data-toggle="dropdown"><i
+                                class="fa fa-bars"></i> Export page data
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'json',escape:'false'});">
+                                <img src='../icons/json.png' width='24px'> JSON</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'xml',escape:'false'});">
+                                <img src='../icons/xml.png' width='24px'> XML</a></li>
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'sql'});">
+                                <img src='../icons/sql.png' width='24px'> SQL</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'csv',escape:'false'});">
+                                <img src='../icons/csv.png' width='24px'> CSV</a></li>
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'txt',escape:'false'});">
+                                <img src='../icons/txt.png' width='24px'> TXT</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'excel',escape:'false'});">
+                                <img src='../icons/xls.png' width='24px'> XLS</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false'});">
+                                <img src='../icons/pdf.png' width='24px'> PDF</a></li>
+
+                        </ul>
+                </div>
             </div>
         </div>
     </div>

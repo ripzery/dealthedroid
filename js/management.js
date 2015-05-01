@@ -108,6 +108,10 @@ app.controller('mainController', function ($scope, $location, $http) {
     //            //alert($scope.brands);
     //        });
     //});
+
+    var exportTable = function(){
+
+    }
 });
 app.controller('sellController', function ($scope, $location) {
     $scope.isActive = function (route) {
