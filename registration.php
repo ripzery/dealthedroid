@@ -10,7 +10,7 @@
 
 </head>
 <body ng-app="formValidator" ng-controller="FormController">
-<div class="containe2r">
+<div class="container2">
 
     <?php
     include("header.php");
