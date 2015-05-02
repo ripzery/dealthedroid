@@ -34,4 +34,4 @@ try {
     return;
 }
 
-echo json_encode(R::exportAll($android,true));
+echo $android->brand->name . " " .$android->model . " has been updated successfully.";

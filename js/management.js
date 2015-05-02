@@ -4,7 +4,7 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/home', {
             templateUrl: 'home.html',
-            controller: 'mainController'
+            controller: 'stockController'
         })
         .when('/sell', {
             templateUrl: 'sell.html',
@@ -20,7 +20,7 @@ app.run(function(editableOptions){
     editableOptions.theme = 'bs3';
 })
 
-app.controller('mainController', function ($scope, $location, $http, $filter) {
+app.controller('stockController', function ($scope, $location, $http, $filter) {
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
     $scope.currentPage = 1;
@@ -49,19 +49,6 @@ app.controller('mainController', function ($scope, $location, $http, $filter) {
 
     $scope.submitmobileForm = function (isValid) {
         if (isValid) {
-            //$.post('../database/add_mobile.php', {
-            //    brandid: $scope.brandid,
-            //    model: $scope.model,
-            //    price: $scope.price,
-            //    quantity: $scope.quantity
-            //
-            //}).done(function (isSuccess){
-            //    if(isSuccess){
-            //        alert(isSuccess);
-            //        $scope.mobiles = isSuccess;
-            //        $scope.$apply();
-            //    }
-            //});
 
             $http.post('../database/add_mobile.php', {
                 brandid: $scope.selectedItem,
@@ -74,7 +61,6 @@ app.controller('mainController', function ($scope, $location, $http, $filter) {
                     $scope.mobiles.push(data[0]);
                 }
                 else {
-                    //alert(data);
                     $scope.duplicateModel = true;
                 }
 
@@ -100,6 +86,7 @@ app.controller('mainController', function ($scope, $location, $http, $filter) {
         return route === $location.path();
     };
 
+    // Don't delete this because it's tricky way to update data.
     $scope.updateBrand = function(data){
 
     };
@@ -114,12 +101,15 @@ app.controller('mainController', function ($scope, $location, $http, $filter) {
             return mobile.brand.name || 'Not set';
         }
     };
+
+    // Don't delete this because it's tricky way to update data.
     $scope.checkName = function(data, mobile) {
         //if (id === 2 && data !== 'awesome') {
         //    return "Username 2 should be `awesome`";
         //}
     };
 
+    // Edit and save mobile
     $scope.saveMobile = function(data,mobileid) {
         //$scope.user not updated yet
         angular.extend(data, {id: mobileid});
@@ -138,7 +128,16 @@ app.controller('mainController', function ($scope, $location, $http, $filter) {
 
     // remove user
     $scope.removeMobile = function(index) {
+        $http.post('../database/remove_mobile.php',{
+            id: $scope.mobiles[index].id
+        })
+            .success(function(data,status,headers,config){
+                alert(data);
+            });
+
         $scope.mobiles.splice(index, 1);
+
+
     };
 
 
@@ -150,26 +149,6 @@ app.controller('mainController', function ($scope, $location, $http, $filter) {
             $scope.$apply();
             //alert(rawData);
         });
-    //$.post('../database/get_brand.php')
-    //    .done(function (data) {
-    //        //alert(data);
-    //        var b = JSON.parse(data);
-    //        $scope.brands = b;
-    //        $scope.$apply();
-    //    });
-
-    //$('#myModal').on('shown.bs.modal', function() {
-    //    $("#brand").focus();
-    //    $.post('../database/get_brand.php')
-    //        .done(function (data){
-    //            //alert(data);
-    //            var b = JSON.parse(data);
-    //            $scope.brands = b;
-    //            //alert(b);
-    //            $scope.$apply();
-    //            //alert($scope.brands);
-    //        });
-    //});
 });
 app.controller('sellController', function ($scope, $location) {
     $scope.isActive = function (route) {
@@ -181,31 +160,3 @@ app.controller('financialController', function ($scope, $location) {
         return route === $location.path();
     }
 });
-
-//app.directive('uniqueModel', ['$http', function($http) {
-//    return {
-//        restrict: 'A',
-//        require: 'ngModel',
-//        link: function(scope, element, attrs, ctrl) {
-//            //set the initial value as soon as the input comes into focus
-//            element.on('focus', function() {
-//                if (!scope.initialValue) {
-//                    scope.initialValue = ctrl.$viewValue;
-//                }
-//            });
-//            element.on('blur', function() {
-//                if (ctrl.$viewValue != scope.initialValue) {
-//                    //var dataUrl = attrs.url + "?email=" + ctrl.$viewValue;
-//                    //you could also inject and use your 'Factory' to make call
-//                    $http.post('../database/add_mobile_check_duplicate.php',{
-//                        model: ctrl.$viewValue
-//                    }).success(function(data) {
-//                        ctrl.$setValidity('isunique', data.result);
-//                    }).error(function(data, status) {
-//                        //handle server error
-//                    });
-//                }
-//            });
-//        }
-//    };
-//}]);
