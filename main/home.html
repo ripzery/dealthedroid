@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-6 col-md-6">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading text"><span class="glyphicon glyphicon-folder-open"></span>Inventory List</div>
@@ -123,14 +123,59 @@
                     <th>Model</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Action</th>
                     </thead>
                     <tbody id="tbody">
-                    <tr dir-paginate="mobile in data | filter: q | itemsPerPage: pageSize" current-page="currentPage"
+                    <tr  dir-paginate="mobile in mobiles | filter: q | itemsPerPage: pageSize" current-page="currentPage"
                         pagination-id="mobile-page">
-                        <td>{{ mobile['brand']['name'] }}</td>
-                        <td>{{ mobile['model'] }}</td>
-                        <td>{{ mobile['price'] }}</td>
-                        <td>{{ mobile['quantity'] }}</td>
+                        <td style="width: 25%">
+                            <!-- editable username (select-remote) -->
+                        <span editable-select="mobile.brand_id" onbeforesave="updateBrand($data)"  e-name="brand_id" e-form="rowform" e-ng-options="b.id as b.name for b in brands" e-required>
+                            <!--{{ //selectedBrand }}-->
+                            {{showBrand( mobile )}}
+                            <!--{{ mobile.brand.name || 'not set' }}-->
+                            <!--{{ findTypeName($data.brand_id) || mobile.brand.name}}-->
+                        </span>
+                        </td>
+                        <td style="width: 15%">
+
+                            <!-- editable model (text with validation) -->
+                        <span editable-text="mobile.model" e-name="model" e-form="rowform"
+                              onbeforesave="checkName($data, mobile.model)" e-required>
+                          {{ mobile.model || 'empty' }}
+                        </span>
+                        </td>
+                        <td style="width: 15%">
+
+                            <!-- editable price (text with validation) -->
+                        <span editable-text="mobile.price" e-name="price" e-form="rowform"
+                              onbeforesave="checkName($data, mobile.price)" e-required>
+                          {{ mobile.price|| 'empty' }}
+                        </span>
+                        </td>
+                        <td style="width: 15%">
+
+                            <!-- editable quantity (text with validation) -->
+                        <span editable-text="mobile.quantity" e-name="quantity" e-form="rowform"
+                              onbeforesave="checkName($data, mobile.quantity)" e-required>
+                          {{ mobile.quantity || 'empty' }}
+                        </span>
+                        </td>
+                        <td style="white-space: nowrap;width: 30%;">
+                            <!-- form -->
+                            <form editable-form name="rowform" onbeforesave="saveMobile($data, mobile.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == mobile">
+                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                    Save
+                                </button>
+                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                                    Cancel
+                                </button>
+                            </form>
+                            <div class="buttons" ng-show="!rowform.$visible">
+                                <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                                <button class="btn btn-danger" ng-click="removeMobile($index)">Delete</button>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -141,32 +186,32 @@
                                              pagination-id="mobile-page"
                                              template-url="../library/js/dirPagination.tpl.html"></dir-pagination-controls>
                 </div>
-                <div class="dropdown col-xs-offset-9">
-                        <button class="btn btn-warning dropdown-toggle" id="nav-locator-dropdown" data-toggle="dropdown"><i
-                                class="fa fa-bars"></i> Export page data
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'json',escape:'false'});">
-                                <img src='../icons/json.png' width='24px'> JSON</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'xml',escape:'false'});">
-                                <img src='../icons/xml.png' width='24px'> XML</a></li>
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'sql'});">
-                                <img src='../icons/sql.png' width='24px'> SQL</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'csv',escape:'false'});">
-                                <img src='../icons/csv.png' width='24px'> CSV</a></li>
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'txt',escape:'false'});">
-                                <img src='../icons/txt.png' width='24px'> TXT</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'excel',escape:'false'});">
-                                <img src='../icons/xls.png' width='24px'> XLS</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false'});">
-                                <img src='../icons/pdf.png' width='24px'> PDF</a></li>
+                <div class="dropdown col-xs-offset-8">
+                    <button class="btn btn-success dropdown-toggle" id="nav-locator-dropdown" data-toggle="dropdown"><i
+                            class="fa fa-bars"></i> Export page data
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'json',escape:'false'});">
+                            <img src='../icons/json.png' width='24px'> JSON</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'xml',escape:'false'});">
+                            <img src='../icons/xml.png' width='24px'> XML</a></li>
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'sql'});">
+                            <img src='../icons/sql.png' width='24px'> SQL</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'csv',escape:'false'});">
+                            <img src='../icons/csv.png' width='24px'> CSV</a></li>
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'txt',escape:'false'});">
+                            <img src='../icons/txt.png' width='24px'> TXT</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'excel',escape:'false'});">
+                            <img src='../icons/xls.png' width='24px'> XLS</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false'});">
+                            <img src='../icons/pdf.png' width='24px'> PDF</a></li>
 
-                        </ul>
+                    </ul>
                 </div>
             </div>
         </div>

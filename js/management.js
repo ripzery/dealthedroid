@@ -1,4 +1,4 @@
-var app = angular.module('management', ['ngRoute', 'angularUtils.directives.dirPagination']);
+var app = angular.module('management', ['ngRoute', 'angularUtils.directives.dirPagination','xeditable']);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -16,7 +16,11 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller('mainController', function ($scope, $location, $http) {
+app.run(function(editableOptions){
+    editableOptions.theme = 'bs3';
+})
+
+app.controller('mainController', function ($scope, $location, $http, $filter) {
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
     $scope.currentPage = 1;
@@ -29,6 +33,20 @@ app.controller('mainController', function ($scope, $location, $http) {
     $scope.pricerule = "mobileForm.price.$invalid && mobileForm.price.$dirty ";
     $scope.quantityrule = "mobileForm.quantity.$invalid && mobileForm.quantity.$dirty";
 
+    $scope.brands = [];
+
+    $scope.loadBrands = function() {
+        return $scope.brands.length ? null : $http.get('../database/get_brand.php').success(function(data) {
+            $scope.brands = data;
+        });
+    };
+
+
+    $scope.$on('$viewContentLoaded', function() {
+        $scope.loadBrands();
+    });
+
+
     $scope.submitmobileForm = function (isValid) {
         if (isValid) {
             //$.post('../database/add_mobile.php', {
@@ -40,7 +58,7 @@ app.controller('mainController', function ($scope, $location, $http) {
             //}).done(function (isSuccess){
             //    if(isSuccess){
             //        alert(isSuccess);
-            //        $scope.data = isSuccess;
+            //        $scope.mobiles = isSuccess;
             //        $scope.$apply();
             //    }
             //});
@@ -53,7 +71,7 @@ app.controller('mainController', function ($scope, $location, $http) {
             }).success(function (data, status, headers, config) {
                 if (data) {
                     $scope.duplicateModel = false;
-                    $scope.data.push(data[0]);
+                    $scope.mobiles.push(data[0]);
                 }
                 else {
                     //alert(data);
@@ -76,25 +94,69 @@ app.controller('mainController', function ($scope, $location, $http) {
             }
 
         });
-    }
+    };
+
     $scope.isActive = function (route) {
         return route === $location.path();
-    }
+    };
+
+    $scope.updateBrand = function(data){
+
+    };
+
+    $scope.showBrand = function(mobile) {
+        //alert(mobile.brand.name);
+        if(mobile.brand_id && $scope.brands.length) {
+            var selected = $filter('filter')($scope.brands, {id: mobile.brand_id});
+            //$scope.selectedBrand = selected;
+            return selected.length ? selected[0].name : 'Not set';
+        } else {
+            return mobile.brand.name || 'Not set';
+        }
+    };
+    $scope.checkName = function(data, mobile) {
+        //if (id === 2 && data !== 'awesome') {
+        //    return "Username 2 should be `awesome`";
+        //}
+    };
+
+    $scope.saveMobile = function(data,mobileid) {
+        //$scope.user not updated yet
+        angular.extend(data, {id: mobileid});
+        //
+        $http.post('../database/edit_mobile.php', {
+            id: data.id,
+            brandid: data.brand_id,
+            model: data.model,
+            price: data.price,
+            quantity: data.quantity
+        })
+            .success(function(data,status,headers,config){
+                alert(data);
+            });
+    };
+
+    // remove user
+    $scope.removeMobile = function(index) {
+        $scope.mobiles.splice(index, 1);
+    };
+
+
 
     $.post('../database/inventory.php')
         .done(function (result) {
             var rawData = JSON.parse(result);
-            $scope.data = rawData;
+            $scope.mobiles = rawData;
             $scope.$apply();
             //alert(rawData);
         });
-    $.post('../database/get_brand.php')
-        .done(function (data) {
-            //alert(data);
-            var b = JSON.parse(data);
-            $scope.brands = b;
-            $scope.$apply();
-        });
+    //$.post('../database/get_brand.php')
+    //    .done(function (data) {
+    //        //alert(data);
+    //        var b = JSON.parse(data);
+    //        $scope.brands = b;
+    //        $scope.$apply();
+    //    });
 
     //$('#myModal').on('shown.bs.modal', function() {
     //    $("#brand").focus();
@@ -108,10 +170,6 @@ app.controller('mainController', function ($scope, $location, $http) {
     //            //alert($scope.brands);
     //        });
     //});
-
-    var exportTable = function(){
-
-    }
 });
 app.controller('sellController', function ($scope, $location) {
     $scope.isActive = function (route) {
