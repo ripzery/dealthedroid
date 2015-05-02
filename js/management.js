@@ -24,7 +24,7 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
     $scope.currentPage = 1;
-    $scope.pageSize = 30;
+    $scope.pageSize = 6;
     //$scope.brandPageSize = 3;
     //$scope.currentBrandPage = 1;
     //$scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
