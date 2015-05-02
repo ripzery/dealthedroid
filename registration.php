@@ -4,26 +4,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Custom CSS -->
-<!--    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
-<!--        <link href='css/app.css' rel='stylesheet' type='text/css'>-->
-<!--    <link href='css/style.css' rel='stylesheet' type='text/css'>-->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap2.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+    <!--        <link href='css/app.css' rel='stylesheet' type='text/css'>-->
+    <!--    <link href='css/style.css' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <!--    <link rel="stylesheet" type="text/css" href="css/bootstrap-vertical-grid.css">-->
     <!--    <link rel="stylesheet" type="text/css" href="css/app.css">-->
-    <link rel="stylesheet" type="text/css" href="css/freelancer.css">
+<!--    <link rel="stylesheet" type="text/css" href="css/freelancer.css">-->
     <link href='css/bootstrap-vertical-grid.css' rel='stylesheet' type='text/css'>
     <script src="library/js/jquery.js"></script>
     <script src="library/js/angular.min.js"></script>
     <script src="js/my-validator.js"></script>
 </head>
 <body ng-app="formValidator" ng-controller="FormController">
-<div class="container">
+<div class="containe2r">
 
     <?php
     include("header.php");
     ?>
 
-    <div class="row-xs-3"></div>
+    <div class="row-xs-2"></div>
     <div class="row-xs-8">
         <div
             class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-offset-3 col-xs-6">
@@ -32,8 +32,7 @@
                     <h1 class="text-center">Registration</h1>
                 </div>
                 <div class="panel-body">
-                    <div
-                        class="col-lg-10 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
                         <form class="form-horizontal" role="form" ng-model="myForm" name="myForm"
                               ng-submit="submitMyForm(myForm.$valid)" novalidate method="post">
                             <div class="form-group" ng-class="{ 'has-error' : {{usernamerule}}}">
