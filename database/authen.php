@@ -16,7 +16,8 @@ if($user){
 
     $_SESSION['uid'] = $user->id;
     $_SESSION['logged_in'] = true;
-    echo true;
+
+    echo $user->role;
 }else{
     echo false;
 }

@@ -125,8 +125,6 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Action</th>
-                    <th>Quantity</th>
-                    <th>Quantity</th>
                     </thead>
                     <tbody id="tbody">
                     <tr  dir-paginate="mobile in mobiles | filter: q | itemsPerPage: pageSize" current-page="currentPage"
@@ -178,22 +176,6 @@
                                 <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
                                 <button class="btn btn-danger" ng-click="removeMobile($index)">Delete</button>
                             </div>
-                        </td>
-                        <td style="width: 5%">
-
-                            <!-- editable quantity (text with validation) -->
-                        <span editable-text="mobile.quantity" e-name="quantity" e-form="rowform"
-                              onbeforesave="checkName($data, mobile.quantity)" e-required>
-                          {{ mobile.quantity || 'empty' }}
-                        </span>
-                        </td>
-                        <td style="width: 5%">
-
-                            <!-- editable quantity (text with validation) -->
-                        <span editable-text="mobile.quantity" e-name="quantity" e-form="rowform"
-                              onbeforesave="checkName($data, mobile.quantity)" e-required>
-                          {{ mobile.quantity || 'empty' }}
-                        </span>
                         </td>
                     </tr>
                     </tbody>

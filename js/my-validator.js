@@ -1,5 +1,3 @@
-
-
 var validator = angular.module('formValidator', []);
 
 validator.controller('FormController', function ($scope, $http) {
@@ -24,9 +22,20 @@ validator.controller('FormController', function ($scope, $http) {
 
         $.post("../../dealthedroid/database/authen.php", {username: $scope.username, password: $scope.password})
             .done(function (result) {
-                $scope.loginStatus = result;
-                if (result)
-                    window.location.href = "main/management.html#/home";
+
+                switch (result){
+                    case "admin":
+                        $scope.loginStatus = true;
+                        window.location.href = "main/management.html#/home";
+                        break;
+                    case "user":
+                        $scope.loginStatus = true;
+                        window.location.href = "store/index.html";
+                        break;
+                    default:
+                        $scope.loginStatus = false;
+                        break;
+                }
             });
     };
 
