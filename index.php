@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap-vertical-grid.css">
     <!--    <link rel="stylesheet" type="text/css" href="css/app.css">-->
     <link rel="stylesheet" type="text/css" href="css/freelancer.css">
-    <link rel="stylesheet" type="text/css" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/bloc.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 
     <!--        <link href='css/style.css' rel='stylesheet' type='text/css'>-->

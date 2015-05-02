@@ -7,14 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-vertical-grid.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <!--    <link rel="stylesheet" type="text/css" href="css/app.css">-->
     <link rel="stylesheet" type="text/css" href="css/freelancer.css">
-<!--        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
-<!--        <link href='css/style.css' rel='stylesheet' type='text/css'>-->
-    <link href='css/bootstrap-vertical-grid.css' rel='stylesheet' type='text/css'>
-    <script src="library/js/angular.min.js"></script>
-    <script src="js/my-validator.js"></script>
 </head>
 <body>
 <div class="container2" ng-app="formValidator" ng-controller="FormController">
@@ -76,6 +71,8 @@
 
     </div>
 </div>
+<script src="library/js/angular.min.js"></script>
+<script src="js/my-validator.js"></script>
 <script src="library/js/jquery.js"></script>
 </body>
 </html>

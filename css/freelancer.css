@@ -8,14 +8,6 @@ body {
     overflow-x: hidden;
 }
 
-p {
-    font-size: 20px;
-}
-
-p.small {
-    font-size: 16px;
-}
-
 a,
 a:hover,
 a:focus,
