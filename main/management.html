@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html >
+<html>
 <head lang="en">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Custom CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/app.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="../css/freelancer.css">-->
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
     <link href='../css/home.css' rel='stylesheet' type='text/css'>
     <link href='../library/css/xeditable.css' rel='stylesheet' type='text/css'>
     <!--<link href="../css/style.css" rel="stylesheet" type="text/css">-->
@@ -17,17 +20,22 @@
 </head>
 <body ng-app="management" ng-controller="stockController">
 
-<div class="navbar navbar-default">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="../index.php"><span class="glyphicon glyphicon-home"></span>DEALTHEDROID</a>
-    </div>
-    <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li ng-class="{active:isActive('/home')}"><a href="#home"><span class="glyphicon glyphicon-wrench"></span>Stock Management</a></li>
-            <li ng-class="{active:isActive('/sell')}"><a href="#sell"><span class="glyphicon glyphicon-shopping-cart"></span>Sell</a></li>
-            <li ng-class="{active:isActive('/financial')}"><a href="#financial"><span class="glyphicon glyphicon-usd"></span>Financial</a></li>
-            <!--<li class="navbar-right"><a href="#">Logout</a></li>-->
-        </ul>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../index.php"><span class="glyphicon glyphicon-home"></span>DEALTHEDROID</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-class="{active:isActive('/home')}"><a href="#home"><span
+                        class="glyphicon glyphicon-wrench"></span>Stock Management</a></li>
+                <li ng-class="{active:isActive('/sell')}"><a href="#sell"><span
+                        class="glyphicon glyphicon-shopping-cart"></span>Sell</a></li>
+                <li ng-class="{active:isActive('/financial')}"><a href="#financial"><span
+                        class="glyphicon glyphicon-usd"></span>Financial</a></li>
+                <!--<li class="navbar-right"><a href="#">Logout</a></li>-->
+            </ul>
+        </div>
     </div>
 </div>
 <div class="container-home">

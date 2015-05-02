@@ -4,9 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link href='css/app.css' rel='stylesheet' type='text/css'>
-    <link href='css/style.css' rel='stylesheet' type='text/css'>
+<!--    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<!--        <link href='css/app.css' rel='stylesheet' type='text/css'>-->
+<!--    <link href='css/style.css' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap2.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="css/bootstrap-vertical-grid.css">-->
+    <!--    <link rel="stylesheet" type="text/css" href="css/app.css">-->
+    <link rel="stylesheet" type="text/css" href="css/freelancer.css">
     <link href='css/bootstrap-vertical-grid.css' rel='stylesheet' type='text/css'>
     <script src="library/js/jquery.js"></script>
     <script src="library/js/angular.min.js"></script>
@@ -19,7 +23,7 @@
     include("header.php");
     ?>
 
-    <div class="row-xs-2"></div>
+    <div class="row-xs-3"></div>
     <div class="row-xs-8">
         <div
             class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-offset-3 col-xs-6">
