@@ -2,7 +2,7 @@ var app = angular.module('management', ['ngRoute', 'angularUtils.directives.dirP
 
 app.config(function ($routeProvider) {
     $routeProvider
-        .when('/home', {
+        .when('/stock', {
             templateUrl: 'home.html',
             controller: 'stockController'
         })

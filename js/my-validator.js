@@ -26,11 +26,11 @@ validator.controller('FormController', function ($scope, $http) {
                 switch (result){
                     case "admin":
                         $scope.loginStatus = true;
-                        window.location.href = "main/management.html#/home";
+                        window.location.href = "main/management.html#/stock";
                         break;
                     case "user":
                         $scope.loginStatus = true;
-                        window.location.href = "store/index.html";
+                        window.location.href = "store/index";
                         break;
                     default:
                         $scope.loginStatus = false;
