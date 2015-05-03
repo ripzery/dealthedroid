@@ -6,12 +6,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-vertical-grid.css">
+    <link rel="stylesheet" type="text/css" href="library/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="library/css/bootstrap-vertical-grid.css">
     <!--    <link rel="stylesheet" type="text/css" href="css/app.css">-->
     <link rel="stylesheet" type="text/css" href="css/freelancer.css">
     <link rel="stylesheet" type="text/css" href="css/bloc.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="library/css/font-awesome.min.css">
 
     <!--        <link href='css/style.css' rel='stylesheet' type='text/css'>-->
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">

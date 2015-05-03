@@ -51,12 +51,12 @@
                             Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                             sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
                         <div class="row" style="margin-top: 20px;min-height: 90px;">
-                            <div class="col-xs-10 col-md-5">
-                                <p class="lead"> {{ mobile.price }} THB</p>
+                            <div class="col-xs-9 col-sm-6">
+                                <p class="lead"> {{ mobile.price | number }} THB</p>
                             </div>
-                            <div class="col-xs-14 col-md-7">
+                            <div style="margin-right: 10px;">
                                 <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.model }}" price="{{ mobile.price }}" quantity="1" quantity-max="{{mobile.quantity}}">
-                                    Add to Cart
+                                    Add to cart
                                 </ngcart-addtocart>
                             </div>
                         </div>

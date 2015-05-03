@@ -7,8 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-vertical-grid.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="library/css/bootstrap-vertical-grid.css">
+    <link rel="stylesheet" type="text/css" href="library/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/freelancer.css">
 </head>
 <body>

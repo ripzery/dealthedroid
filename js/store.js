@@ -27,7 +27,8 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
         });
     };
 
-    //ngCart
+    ngCart.setTaxRate(7);
+    ngCart.setShipping(50);
 
     $scope.$on('$viewContentLoaded', function() {
         $scope.loadMobiles();
