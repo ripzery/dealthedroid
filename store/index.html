@@ -9,6 +9,11 @@
     <!--<link rel="stylesheet" type="text/css" href="../css/freelancer.css">-->
     <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <style>
+        .navbar-fixed-top{
+            position:fixed;
+        }
+    </style>
 </head>
 <body ng-app="store" ng-controller="storeController">
 
@@ -27,14 +32,19 @@
                 <!--<li class="navbar-right"><a href="#">Logout</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <li class="navbar-right"><a href="../index.php"><span
-                    class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                <li>
+                    <a ui-sref="site.cart" href="#store" style="padding: 5px 0 0 0; width:150px">
+                        <ngcart-summary></ngcart-summary>
+                    </a>
+                </li>
+                <li class="navbar-right"><a href="../index.php"><span
+                        class="glyphicon glyphicon-log-out"></span>Logout</a></li>
             </ul>
         </div>
     </div>
 </div>
 
-<div class="container-home">
+<div class="container-home" style="margin-top: 80px;">
     <div ng-view>
 
     </div>
