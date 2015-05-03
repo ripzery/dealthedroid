@@ -67,7 +67,7 @@
                         </div>
 
                     </div>
-                    <button type="submit" class="btn btn-default" ng-disabled="mobileForm.$invalid">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="mobileForm.$invalid">Submit</button>
 
                 </form>
                 <br>
@@ -88,7 +88,7 @@
                             <p class="help-block" ng-show="duplicateBrand">Duplicate brand!</p>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success" ng-disabled="brandForm.$invalid">Add</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="brandForm.$invalid">Add</button>
                 </form>
                 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">-->
                 <!--Add brand-->
@@ -174,7 +174,7 @@
                             </form>
                             <div class="buttons" ng-show="!rowform.$visible">
                                 <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
-                                <button class="btn btn-danger" ng-click="removeMobile($index)">Delete</button>
+                                <button class="btn btn-default" ng-click="removeMobile($index)">Delete</button>
                             </div>
                         </td>
                     </tr>
@@ -189,7 +189,7 @@
                                              template-url="../library/js/dirPagination.tpl.html"></dir-pagination-controls>
                 </div>
                 <div class="dropdown col-xs-offset-9">
-                    <button class="btn btn-success dropdown-toggle" id="nav-locator-dropdown" data-toggle="dropdown"><i
+                    <button class="btn btn-primary dropdown-toggle" id="nav-locator-dropdown" data-toggle="dropdown"><i
                             class="fa fa-bars"></i> Export page data
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
