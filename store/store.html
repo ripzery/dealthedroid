@@ -40,147 +40,32 @@
             <div class="item col-xs-4 col-lg-4"  ng-repeat="mobile in mobiles" >
 
                 <div class="thumbnail">
-                    <h4 class="group inner list-group-item-heading text-center" style="margin-top: 20px;margin-bottom: 20px;">
-                        {{ mobile.brand.name + " " + mobile.model}}</h4>
+                    <!--<h4 class="group inner list-group-item-heading text-center" style="margin-top: 20px;margin-bottom: 20px;">-->
+                        <!--{{ mobile.brand.name + " " + mobile.model}}</h4>-->
                     <img class="group list-group-image" src="../assets/s4.png">
                     <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
                     <div class="caption">
-                        <h3>{{mobile.id}}</h3>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ mobile.brand.name + " " + mobile.model}}</h4>
                         <p class="group inner list-group-item-text">
                             Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
                             sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-xs-12 col-md-6">
+                        <div class="row" style="margin-top: 20px;min-height: 90px;">
+                            <div class="col-xs-10 col-md-5">
                                 <p class="lead"> {{ mobile.price }} THB</p>
                             </div>
-                            <div class="col-xs-12 col-md-6">
+                            <div class="col-xs-14 col-md-7">
                                 <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.model }}" price="{{ mobile.price }}" quantity="1" quantity-max="{{mobile.quantity}}">
                                     Add to Cart
                                 </ngcart-addtocart>
-                                <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--<div class="item  col-xs-4 col-lg-4">-->
-                <!--<div class="thumbnail">-->
-                    <!--<img class="img-centered" src="../assets/s4.png">-->
-                    <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
-                    <!--<div class="caption">-->
-                        <!--<h4 class="group inner list-group-item-heading">-->
-                            <!--Samsung Galaxy S6</h4>-->
-                        <!--<p class="group inner list-group-item-text">-->
-                            <!--Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,-->
-                            <!--sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<p class="lead">-->
-                                    <!--$21.000</p>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="item  col-xs-4 col-lg-4">-->
-                <!--<div class="thumbnail">-->
-                    <!--<img class="img-centered" src="../assets/s4.png">-->
-                    <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
-                    <!--<div class="caption">-->
-                        <!--<h4 class="group inner list-group-item-heading">-->
-                            <!--LG Nexus 5</h4>-->
-                        <!--<p class="group inner list-group-item-text">-->
-                            <!--Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,-->
-                            <!--sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<p class="lead">-->
-                                    <!--$21.000</p>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="item  col-xs-4 col-lg-4">-->
-                <!--<div class="thumbnail">-->
-                    <!--<img class="img-centered" src="../assets/s4.png">-->
-                    <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
-                    <!--<div class="caption">-->
-                        <!--<h4 class="group inner list-group-item-heading">-->
-                            <!--Motolora Nexus 6</h4>-->
-                        <!--<p class="group inner list-group-item-text">-->
-                            <!--Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,-->
-                            <!--sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<p class="lead">-->
-                                    <!--$21.000</p>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="item  col-xs-4 col-lg-4">-->
-                <!--<div class="thumbnail">-->
-                    <!--<img class="img-centered" src="../assets/s4.png">-->
-                    <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
-                    <!--<div class="caption">-->
-                        <!--<h4 class="group inner list-group-item-heading">-->
-                            <!--Product title</h4>-->
-                        <!--<p class="group inner list-group-item-text">-->
-                            <!--Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,-->
-                            <!--sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<p class="lead">-->
-                                    <!--$21.000</p>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="item  col-xs-4 col-lg-4">-->
-                <!--<div class="thumbnail">-->
-                    <!--<img class="img-centered" src="../assets/s4.png">-->
-                    <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
-                    <!--<div class="caption">-->
-                        <!--<h4 class="group inner list-group-item-heading">-->
-                            <!--Product title</h4>-->
-                        <!--<p class="group inner list-group-item-text">-->
-                            <!--Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,-->
-                            <!--sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<p class="lead">-->
-                                    <!--$21.000</p>-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12 col-md-6">-->
-                                <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
     </div>
 
-
-    <hr/>
-    <h3>Cart</h3>
-
-    <ngcart-cart></ngcart-cart>
     <!--<hr/>-->
     <!--<div class="row">-->
         <!--<div class="col-md-12">-->

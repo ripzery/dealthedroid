@@ -15,7 +15,7 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller('storeController',function($scope,$location,$http){
+app.controller('storeController',function($scope,$location,$http,ngCart){
     $scope.isActive = function (route) {
         return route === $location.path();
     };
@@ -27,9 +27,13 @@ app.controller('storeController',function($scope,$location,$http){
         });
     };
 
+    //ngCart
+
     $scope.$on('$viewContentLoaded', function() {
         $scope.loadMobiles();
     });
+
+
     //
     //$http.post('../database/inventory.php')
     //    .done(function (result) {

@@ -5,16 +5,16 @@
 
 <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0">
 
-    <table class="table table-striped ngCart cart">
+    <table id="cart" class="table table-striped ngCart cart">
 
         <thead>
-        <tr>
+        <!--<tr>-->
             <th></th>
             <th></th>
             <th>Quantity</th>
-            <th>Amount</th>
+            <th>Price</th>
             <th>Total</th>
-        </tr>
+        <!--</tr>-->
         </thead>
         <tfoot>
         <tr ng-show="ngCart.getTax()">
@@ -45,17 +45,20 @@
 
             <td>{{ item.getName() }}</td>
             <td>
-                <span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                      ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                <!--<span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"-->
+                      <!--ng-click="item.setQuantity(-1, true)"></span>-->
+                &nbsp;&nbsp;
                 {{ item.getQuantity() | number }}&nbsp;&nbsp;
 
-                <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                <!--<span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span>-->
+            </td>
             <td>{{ item.getPrice() | currency}}</td>
             <td>{{ item.getTotal() | currency }}</td>
         </tr>
         </tbody>
     </table>
 </div>
+
 <style>
     .ngCart.cart span[ng-click] {
         cursor: pointer;
