@@ -30,7 +30,7 @@ validator.controller('FormController', function ($scope, $http) {
                         break;
                     case "user":
                         $scope.loginStatus = true;
-                        window.location.href = "store/index";
+                        window.location.href = "store/index.html#/store";
                         break;
                     default:
                         $scope.loginStatus = false;

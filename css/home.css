@@ -1,13 +1,3 @@
-@font-face {
-    font-family: slim-font;
-    src: url('../assets/fonts/Lato/Lato-Hairline.ttf');
-}@font-face {
-    font-family: light-font;
-    src: url('../assets/fonts/Lato/Lato-Light.ttf');
-}@font-face {
-    font-family: regular-font;
-    src: url('../assets/fonts/Lato/Lato-Regular.ttf');
-}
 
 .container-home{
     margin-top: 20px;
