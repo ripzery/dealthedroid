@@ -18,7 +18,7 @@
                     <td>{{ record.brand }}</td>
                     <td>{{ record.model }}</td>
                     <td>{{ record.quantity }}</td>
-                    <td>{{ record.price }}</td>
+                    <td>{{ record.price | currency : 'THB'}}</td>
                 </tr>
             </tbody>
         </table>
