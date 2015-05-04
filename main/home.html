@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <div style="margin: 15px">
-                <table id="mobile-table" class="table table-responsive">
+                <table id="mobile-table" class="table table-responsive table-striped">
                     <thead id="thead">
                     <th>Brand</th>
                     <th>Model</th>
@@ -164,7 +164,7 @@
                             <!-- editable price (text with validation) -->
                         <span editable-text="mobile.price" e-name="price" e-form="rowform"
                               onbeforesave="checkName($data, mobile.price)" e-required>
-                          {{ mobile.price|| 'empty' }}
+                          {{ ( mobile.price | number) || 'empty' }}
                         </span>
                         </td>
                         <td style="width: 10%">
