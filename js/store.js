@@ -16,9 +16,19 @@ app.config(function ($routeProvider) {
 });
 
 app.controller('storeController',function($scope,$location,$http,ngCart){
+
+
     $scope.isActive = function (route) {
+
         return route === $location.path();
     };
+
+    $http.post('../database/is_login.php')
+        .success(function(data){
+            if(data == 'fail'){
+                window.location.href = "../login.php";
+            }
+        });
 
     $scope.mobiles = [];
     $scope.loadMobiles = function() {
@@ -34,6 +44,14 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
         $scope.loadMobiles();
     });
 
+    $scope.logout = function(){
+        $http.post('../database/logout.php')
+        .success(function(data){
+            if(data == "success"){
+                window.location.href = "../login.php";
+            }
+        });
+    };
 
     //
     //$http.post('../database/inventory.php')
@@ -43,8 +61,12 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
     //    });
 });
 
-app.controller('cartController', function ($scope, $location) {
+app.controller('cartController', function ($scope, $location, $http) {
     $scope.isActive = function (route) {
         return route === $location.path();
+    }
+
+    $scope.logout = function(){
+        $http.post('../database/logout.php');
     }
 });
