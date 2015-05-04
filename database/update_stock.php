@@ -29,7 +29,7 @@ $current_datetime = date("Y-m-d H:i:s");
 $transaction->created_time = $current_datetime;
 $transaction->total_price = $total_price;
 
-// Create relation between transaction and user
+// Create relation one-to-many : user-to-transactions
 $current_user->ownTransactions[] = $transaction;
 
 $tid = 0;
@@ -60,6 +60,7 @@ foreach($all_items as $update_item){
         return;
     }
 
+    // Create new record
     $record = R::dispense('records');
     $name = [];
     $name = explode(" ",$update_item->_name);
@@ -68,6 +69,7 @@ foreach($all_items as $update_item){
     $record->quantity = $update_item->_quantity;
     $record->price = $update_item->_price;
 
+    // create relation one-to-many : transaction-to-records
     $transaction = R::load('transactions',$tid);
     $transaction->ownRecordList[] = $record;
 
