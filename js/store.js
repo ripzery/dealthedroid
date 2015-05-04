@@ -27,6 +27,8 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
         .success(function(data){
             if(data == 'fail'){
                 window.location.href = "../login.php";
+            }else{
+                $scope.username = data;
             }
         });
 

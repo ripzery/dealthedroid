@@ -40,6 +40,8 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
         .success(function(data){
             if(data == "fail"){
                 window.location.href = "../login.php";
+            }else{
+                $scope.username = data;
             }
         });
 
