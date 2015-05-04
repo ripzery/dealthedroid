@@ -55,7 +55,7 @@
                                 <p class="lead"> {{ mobile.price | number }} THB</p>
                             </div>
                             <div style="margin-right: 10px;">
-                                <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.model }}" price="{{ mobile.price }}" quantity="1" quantity-max="{{mobile.quantity}}">
+                                <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.brand.name + ' ' + mobile.model }}" price="{{ mobile.price }}" quantity="1" quantity-max="{{mobile.quantity}}">
                                     Add to cart
                                 </ngcart-addtocart>
                             </div>
