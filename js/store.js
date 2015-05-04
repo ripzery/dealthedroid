@@ -85,6 +85,7 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
 
     $scope.confirm = function(){
         var items = ngCart.getItems();
+        console.log(items);
         $http.post('../database/update_stock.php',[
             items
         ]).success(function(data){

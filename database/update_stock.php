@@ -8,29 +8,76 @@ require('config.inc.php');
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-//$item_count = count($request[0]);
+// Get all item from request[0]
 $all_items = $request[0];
+$total_price = 0;
 
+session_start();
+// Get current userid
+$userid = $_SESSION['uid'];
+$current_user = R::load('users',$userid);
 
+// Create new transaction
+$transaction = R::dispense('transactions');
+
+// Calculate total price and save new transaction to database
 foreach($all_items as $update_item){
+    $total_price += $update_item->_quantity * $update_item->_price;
+}
+
+$current_datetime = date("Y-m-d H:i:s");
+$transaction->created_time = $current_datetime;
+$transaction->total_price = $total_price;
+
+// Create relation between transaction and user
+$current_user->ownTransactions[] = $transaction;
+
+$tid = 0;
+// Save transaction to the database
+try{
+    R::store($current_user);
+   $tid = R::store($transaction);
+}catch (Exception $e){
+    echo "Error on save the transaction.";
+    return;
+}
+
+// Change item quantity in the stock when a customer buy the product.
+foreach($all_items as $update_item){
+
+    // make change item quantity in the stock when a customer buy the product.
     $id = $update_item->_id;
     $mobile = R::load('android',$id);
     $mobile->quantity -= $update_item->_quantity;
     try{
-        if($mobile->quantity == 0){
+        if($mobile->quantity == 0){ // If customer buys all of the model, that model should be removed.
             R::trash($mobile);
         }else{
-            R::store($mobile);
+            R::store($mobile); // else decrease quantity of the model in stock.
         }
     }catch(Exception $e){
         echo "fail";
         return;
-//        echo "updating the stock has been failed";
+    }
+
+    $record = R::dispense('records');
+    $name = [];
+    $name = explode(" ",$update_item->_name);
+    $record->brand = $name[0];
+    $record->model = $name[1];
+    $record->quantity = $update_item->_quantity;
+    $record->price = $update_item->_price;
+
+    $transaction = R::load('transactions',$tid);
+    $transaction->ownRecordList[] = $record;
+
+    try{
+        R::store($transaction);
+        R::store($record);
+    }catch(Exception $e){
+        echo $e;
+        return;
     }
 }
+
 echo "success";
-//echo "Stock has been updated successfully";
-
-//$mobile = R::load('mobile',$request->_id);
-
-//echo $mobile->model;
