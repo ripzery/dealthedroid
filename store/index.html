@@ -30,11 +30,13 @@
                         class="glyphicon glyphicon-phone"></span>Store</a></li>
                 <li ng-class="{active:isActive('/cart')}"><a href="#cart"><span
                         class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
+                <li ng-class="{active:isActive('/history')}"><a href="#history"><span
+                        class="glyphicon glyphicon-transfer"></span>History</a></li>
                 <!--<li class="navbar-right"><a href="#">Logout</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a ui-sref="site.cart" href="#store" style="padding: 5px 0 0 0; width:150px">
+                    <a href="#cart" style="padding: 5px 0 0 0; width:150px">
                         <ngcart-summary></ngcart-summary>
                     </a>
                 </li>

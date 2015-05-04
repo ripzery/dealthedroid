@@ -12,6 +12,10 @@ app.config(function ($routeProvider) {
         .when('/cart', {
             templateUrl: 'cart.html',
             controller: 'cartController'
+        })
+        .when('/history', {
+            templateUrl: 'history.html',
+            controller: 'historyController'
         });
 });
 
@@ -63,7 +67,26 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
     //    });
 });
 
-app.controller('cartController', function ($scope, $location, $http) {
+app.controller('cartController', function ($scope, $location, $http,ngCart) {
+    $scope.isActive = function (route) {
+        return route === $location.path();
+    };
+
+    $scope.cancel = function(){
+        ngCart.empty(true);
+        //$location.path("/store");
+    };
+
+    $scope.isCartEmpty = function(){
+        return ngCart.totalCost() != 0;
+    };
+
+    $scope.logout = function(){
+        $http.post('../database/logout.php');
+    }
+});
+
+app.controller('historyController', function ($scope, $location, $http) {
     $scope.isActive = function (route) {
         return route === $location.path();
     }
