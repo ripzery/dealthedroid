@@ -1,4 +1,5 @@
 <!--<h3>Cart</h3>-->
+<p class="lead">{{update}}</p>
 <div class="panel panel-primary">
     <div class="panel-heading">
         Your cart
@@ -10,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-right">
-                    <button type="button" ng-show="isCartEmpty()" class="btn btn-primary">Confirm</button>
+                    <button type="button" ng-click="confirm()" ng-show="isCartEmpty()" class="btn btn-primary">Confirm</button>
                     <button type="button" ng-click="cancel()" ng-show="isCartEmpty()" class="btn btn-danger">Cancel</button>
                 </div>
             </div>

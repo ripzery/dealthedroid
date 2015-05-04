@@ -72,6 +72,8 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
         return route === $location.path();
     };
 
+    $scope.update = "";
+
     $scope.cancel = function(){
         ngCart.empty(true);
         //$location.path("/store");
@@ -79,6 +81,21 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
 
     $scope.isCartEmpty = function(){
         return ngCart.totalCost() != 0;
+    };
+
+    $scope.confirm = function(){
+        var items = ngCart.getItems();
+        $http.post('../database/update_stock.php',[
+            items
+        ]).success(function(data){
+            console.log(data);
+            if(data == "success"){
+                ngCart.empty(true);
+                $scope.update = "Congratulation, you will get your product soon!";
+            }else if(data == "fail"){
+
+            }
+        });
     };
 
     $scope.logout = function(){
@@ -89,7 +106,7 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
 app.controller('historyController', function ($scope, $location, $http) {
     $scope.isActive = function (route) {
         return route === $location.path();
-    }
+    };
 
     $scope.logout = function(){
         $http.post('../database/logout.php');
