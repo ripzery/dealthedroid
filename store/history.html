@@ -1,7 +1,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
          <label for="selectTransaction">Select transaction :</label>
-         <select id="selectTransaction" name="transaction" id="transaction" ng-model="trans" ng-options=" transaction for transaction in transactions"></select>
+         <select id="selectTransaction" name="transaction" id="transaction" ng-model="selectedTransaction" ng-change="getRecords()" ng-options=" transaction.id as transaction.created_time for transaction in transactions"></select>
     </div>
     <div class="panel-body">
         <table class="table table-responsive">
@@ -13,7 +13,13 @@
                 <th>Price</th>
             </thead>
             <tbody>
-                <tr></tr>
+                <tr ng-repeat="record in records">
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.brand }}</td>
+                    <td>{{ record.model }}</td>
+                    <td>{{ record.quantity }}</td>
+                    <td>{{ record.price }}</td>
+                </tr>
             </tbody>
         </table>
     </div>

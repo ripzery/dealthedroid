@@ -105,8 +105,28 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
 });
 
 app.controller('historyController', function ($scope, $location, $http) {
+    $scope.user = [];
+    $scope.transactions = [];
+
     $scope.isActive = function (route) {
         return route === $location.path();
+    };
+
+    $scope.$on('$viewContentLoaded', function () {
+        $scope.getTransactions();
+    });
+
+    $scope.getTransactions = function(){
+        return $scope.transactions.length ? null : $http.post('../database/get_transactions.php').success(function(data){ $scope.transactions = data; });
+    };
+
+    $scope.getRecords = function(){
+        //alert($scope.selectedTransaction);
+        $http.post('../database/get_records.php', {
+            tid: $scope.selectedTransaction
+        }).success(function(data){
+            $scope.records = data;
+        });
     };
 
     $scope.logout = function(){
