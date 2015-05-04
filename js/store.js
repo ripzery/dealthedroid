@@ -54,6 +54,7 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
         $http.post('../database/logout.php')
         .success(function(data){
             if(data == "success"){
+                ngCart.empty(true);
                 window.location.href = "../login.php";
             }
         });
@@ -100,11 +101,17 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
     };
 
     $scope.logout = function(){
-        $http.post('../database/logout.php');
-    }
+        $http.post('../database/logout.php')
+            .success(function(data){
+                if(data == "success"){
+                    ngCart.empty(true);
+                    window.location.href = "../login.php";
+                }
+            });
+    };
 });
 
-app.controller('historyController', function ($scope, $location, $http) {
+app.controller('historyController', function ($scope, $location, $http, ngCart) {
     $scope.user = [];
     $scope.transactions = [];
 
@@ -130,6 +137,12 @@ app.controller('historyController', function ($scope, $location, $http) {
     };
 
     $scope.logout = function(){
-        $http.post('../database/logout.php');
-    }
+        $http.post('../database/logout.php')
+            .success(function(data){
+                if(data == "success"){
+                    ngCart.empty(true);
+                    window.location.href = "../login.php";
+                }
+            });
+    };
 });
