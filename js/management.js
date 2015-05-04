@@ -39,7 +39,7 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
     $http.post('../database/is_login.php')
         .success(function(data){
             if(data == "fail"){
-                window.location.href = "../login.php";
+                window.location.href = "../#/login";
             }else{
                 $scope.username = data;
             }
@@ -164,7 +164,7 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
         $http.post('../database/logout.php')
             .success(function (data) {
                 if (data == "success") {
-                    window.location.href = "../login.php";
+                    window.location.href = "../#/login";
                 }
             });
     };
@@ -177,7 +177,7 @@ app.controller('sellController', function ($scope, $location) {
     $http.post('../database/logout.php')
         .success(function(data){
             if(data == "success"){
-                window.location.href = "../login.php";
+                window.location.href = "../#/login";
             }
         });
 });
@@ -189,7 +189,7 @@ app.controller('financialController', function ($scope, $location) {
     $http.post('../database/logout.php')
         .success(function(data){
             if(data == "success"){
-                window.location.href = "../login.php";
+                window.location.href = "../#/login";
             }
         });
 });

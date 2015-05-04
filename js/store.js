@@ -30,7 +30,7 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
     $http.post('../database/is_login.php')
         .success(function(data){
             if(data == 'fail'){
-                window.location.href = "../login.php";
+                window.location.href = "../#/login";
             }else{
                 $scope.username = data;
             }
@@ -55,7 +55,7 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
         .success(function(data){
             if(data == "success"){
                 ngCart.empty(true);
-                window.location.href = "../login.php";
+                window.location.href = "../#/login";
             }
         });
     };
@@ -111,7 +111,7 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
             .success(function(data){
                 if(data == "success"){
                     ngCart.empty(true);
-                    window.location.href = "../login.php";
+                    window.location.href = "../#/login";
                 }
             });
     };
@@ -147,7 +147,7 @@ app.controller('historyController', function ($scope, $location, $http, ngCart) 
             .success(function(data){
                 if(data == "success"){
                     ngCart.empty(true);
-                    window.location.href = "../login.php";
+                    window.location.href = "../#/login";
                 }
             });
     };

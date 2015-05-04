@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="library/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="library/css/bootstrap-vertical-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/freelancer.css">
+
+</head>
+<body>
+<div ng-app="myApp">
+
+    <div ui-view="navbar">
+
+    </div>
+    <!-- Navigation -->
+    <!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">-->
+        <!--<div class="container">-->
+            <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+            <!--<div class="navbar-header">-->
+                <!--<a class="navbar-brand" href="" ui-sref="welcome">DEALTHEDROID</a>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+            <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                    <!--<li>-->
+                        <!--<a href="" ui-sref="login">Login</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="" ui-sref="signup">Sign Up</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash; /.container &ndash;&gt;-->
+    <!--</nav>-->
+
+    <div ui-view="content">
+
+    </div>
+
+</div>
+<script src="library/js/angular.min.js"></script>
+<script src="library/js/angular-ui-router.js"></script>
+<script src="js/myApp.js"></script>
+<!--<script src="js/my-validator.js"></script>-->
+</body>
+</html>

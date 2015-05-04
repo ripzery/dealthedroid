@@ -1,13 +1,14 @@
 <?php
 require('config.inc.php');
-//$data = json_decode(file_get_contents("database://input"));
-$username = $_POST['username'];
-$password = $_POST['password'];
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+//$username = $_POST['username'];
+//$password = $_POST['password'];
 
 $user = R::findOne('users', ' username = :username AND password = :password ',
     array(
-        ':username' => $username,
-        ':password' => sha1($password)
+        ':username' => $request->username,
+        ':password' => sha1($request->password)
     )
 );
 
