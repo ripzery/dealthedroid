@@ -4,8 +4,9 @@
          <select id="selectTransaction" name="transaction" id="transaction" ng-model="selectedTransaction" ng-change="getRecords()" ng-options=" transaction.id as transaction.created_time for transaction in transactions"></select>
     </div>
     <div class="panel-body">
-        <table class="table table-responsive">
-            <thead>
+        <p class="lead text-center" ng-show="!records.length">Please select the transaction</p>
+        <table class="table table-striped" ng-show="records.length">
+            <thead ng-show="records.length">
                 <th>ID</th>
                 <th>Brand</th>
                 <th>Model</th>
@@ -18,7 +19,28 @@
                     <td>{{ record.brand }}</td>
                     <td>{{ record.model }}</td>
                     <td>{{ record.quantity }}</td>
-                    <td>{{ record.price | currency : 'THB'}}</td>
+                    <td>{{ record.price | currency : 'THB '}}</td>
+                </tr>
+                <tr >
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Tax 7% : </td>
+                    <td>{{ records[0].transactions.tax | currency : 'THB ' }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Shipping : </td>
+                    <td>{{ records[0].transactions.shipping | currency : 'THB ' }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total : </td>
+                    <td>{{ records[0].transactions.total_price  | currency : 'THB ' }}</td>
                 </tr>
             </tbody>
         </table>

@@ -142,7 +142,7 @@
                     <tbody id="tbody">
                     <tr  dir-paginate="mobile in mobiles | filter: q | itemsPerPage: pageSize" current-page="currentPage"
                         pagination-id="mobile-page">
-                        <td style="width: 25%">
+                        <td style="width: 20%">
                             <!-- editable username (select-remote) -->
                         <span editable-select="mobile.brand_id" onbeforesave="updateBrand($data)"  e-name="brand_id" e-form="rowform" e-ng-options="b.id as b.name for b in brands" e-required>
                             <!--{{ //selectedBrand }}-->
@@ -151,7 +151,7 @@
                             <!--{{ findTypeName($data.brand_id) || mobile.brand.name}}-->
                         </span>
                         </td>
-                        <td style="width: 15%">
+                        <td style="width: 20%">
 
                             <!-- editable model (text with validation) -->
                         <span editable-text="mobile.model" e-name="model" e-form="rowform"
@@ -159,7 +159,7 @@
                           {{ mobile.model || 'empty' }}
                         </span>
                         </td>
-                        <td style="width: 10%">
+                        <td style="width: 20%">
 
                             <!-- editable price (text with validation) -->
                         <span editable-text="mobile.price" e-name="price" e-form="rowform"
@@ -206,25 +206,26 @@
                             class="fa fa-bars"></i> Export page data
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'json',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'json',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/json.png' width='24px'> JSON</a></li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'xml',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'xml',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/xml.png' width='24px'> XML</a></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'sql',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'sql',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/sql.png' width='24px'> SQL</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'csv',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'csv',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/csv.png' width='24px'> CSV</a></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'txt',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'txt',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/txt.png' width='24px'> TXT</a></li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'excel',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'excel',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/xls.png' width='24px'> XLS</a></li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#home" onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/pdf.png' width='24px'> PDF</a></li>
+
                     </ul>
                 </div>
             </div>

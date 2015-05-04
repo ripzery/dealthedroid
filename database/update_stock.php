@@ -8,9 +8,11 @@ require('config.inc.php');
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-// Get all item from request[0]
-$all_items = $request[0];
-$total_price = 0;
+// Get all item from request
+$all_items = $request->items;
+$tax = $request->tax;
+$shipping = $request->shipping;
+$total_price = $request->total_price;
 
 session_start();
 // Get current userid
@@ -20,14 +22,11 @@ $current_user = R::load('users',$userid);
 // Create new transaction
 $transaction = R::dispense('transactions');
 
-// Calculate total price and save new transaction to database
-foreach($all_items as $update_item){
-    $total_price += $update_item->_quantity * $update_item->_price;
-}
-
 $current_datetime = date("Y-m-d H:i:s");
 $transaction->created_time = $current_datetime;
 $transaction->total_price = $total_price;
+$transaction->tax = $tax;
+$transaction->shipping = $shipping;
 
 // Create relation one-to-many : user-to-transactions
 $current_user->ownTransactions[] = $transaction;
@@ -63,7 +62,7 @@ foreach($all_items as $update_item){
     // Create new record
     $record = R::dispense('records');
     $name = [];
-    $name = explode(" ",$update_item->_name);
+    $name = explode(" ",$update_item->_name,2);
     $record->brand = $name[0];
     $record->model = $name[1];
     $record->quantity = $update_item->_quantity;

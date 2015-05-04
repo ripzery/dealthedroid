@@ -86,10 +86,16 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
 
     $scope.confirm = function(){
         var items = ngCart.getItems();
+        var tax = ngCart.getTax();
+        var shipping = ngCart.getShipping();
+        var total_price = ngCart.totalCost();
         console.log(items);
-        $http.post('../database/update_stock.php',[
-            items
-        ]).success(function(data){
+        $http.post('../database/update_stock.php', {
+            items: items,
+            tax: tax,
+            shipping: shipping,
+            total_price: total_price
+        }).success(function(data){
             console.log(data);
             if(data == "success"){
                 ngCart.empty(true);
