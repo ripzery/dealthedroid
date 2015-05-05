@@ -10,7 +10,8 @@
 						pdfLeftMargin:20,
 						escape:'true',
 						htmlContent:'false',
-						consoleLog:'false'
+						consoleLog:'false',
+                        columnSpacing: '50'
 				};
                 
 				var options = $.extend(defaults, options);
@@ -276,7 +277,7 @@
 						$(this).filter(':visible').find('th').each(function(index,data) {
 							if ($(this).css('display') != 'none'){					
 								if(defaults.ignoreColumn.indexOf(index) == -1){
-									var colPosition = startColPosition+ (index * 50);									
+									var colPosition = startColPosition+ (index * defaults.columnSpacing);
 									doc.text(colPosition,20, parseString($(this)));
 								}
 							}
@@ -299,7 +300,7 @@
 						$(this).filter(':visible').find('td').each(function(index,data) {
 							if ($(this).css('display') != 'none'){	
 								if(defaults.ignoreColumn.indexOf(index) == -1){
-									var colPosition = startColPosition+ (index * 50);									
+									var colPosition = startColPosition+ (index * defaults.columnSpacing);
 									doc.text(colPosition,rowPosition, parseString($(this)));
 								}
 							}

@@ -7,7 +7,7 @@
         <p class="lead text-center" id="textlead" ng-show="!records.length">Please select the transaction</p>
         <table id="transaction-table" class="table table-striped" ng-show="records.length">
             <thead ng-show="records.length">
-                <!--<th>ID</th>-->
+                <th>ID</th>
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Price</th>
@@ -15,28 +15,28 @@
             </thead>
             <tbody>
                 <tr ng-repeat="record in records">
-                    <!--<td>{{ record.id }}</td>-->
+                    <td>{{ record.id }}</td>
                     <td>{{ record.brand }}</td>
                     <td>{{ record.model }}</td>
                     <td>{{ record.price | currency : 'THB '}}</td>
                     <td>{{ record.quantity }}</td>
                 </tr>
                 <tr >
-                    <!--<td></td>-->
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td>Tax 7% : </td>
                     <td>{{ records[0].transactions.tax | currency : 'THB ' }}</td>
                 </tr>
                 <tr>
-                    <!--<td></td>-->
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td>Shipping : </td>
                     <td>{{ records[0].transactions.shipping | currency : 'THB ' }}</td>
                 </tr>
                 <tr>
-                    <!--<td></td>-->
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td>Total : </td>
@@ -48,7 +48,7 @@
     <div class="panel-footer text-right">
         <div class="dropdown col-xs-offset-10">
             <button class="btn btn-primary dropdown-toggle" id="nav-locator-dropdown" data-toggle="dropdown"><i
-                    class="fa fa-bars"></i> Export page data
+                    class="fa fa-bars"></i> Export transaction
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
                 <li><a href="#history" onClick="$('#transaction-table').tableExport({type:'json',escape:'false'});">
@@ -68,7 +68,7 @@
                 <li><a href="#history" onClick="$('#transaction-table').tableExport({type:'excel',escape:'false'});">
                     <img src='../assets/icons/xls.png' width='24px'> XLS</a></li>
                 <li class="divider"></li>
-                <li><a href="#history" onClick="$('#transaction-table').tableExport({type:'pdf',escape:'false'});">
+                <li><a href="#history" onClick="$('#transaction-table').tableExport({type:'pdf',escape:'false',pdfFontSize:'10',columnSpacing:'35'});">
                     <img src='../assets/icons/pdf.png' width='24px'> PDF</a></li>
 
             </ul>
