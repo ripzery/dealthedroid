@@ -3,6 +3,7 @@ require('config.inc.php');
 
 session_start();
 
+// check if user is currently logged in
 if(isset($_SESSION['logged_in'])){
     if($_SESSION['uid'] == 1){ // admin
         echo "admin";

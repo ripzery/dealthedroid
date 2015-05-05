@@ -14,7 +14,7 @@ session_start();
 
 $uid = $_SESSION['uid'];
 
-
+//get  all transactions
 $transactions = R::find('transactions',' users_id = ' . $uid);
 //$records = R::find('records',' users_id = ' . $uid);
 

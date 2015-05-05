@@ -75,8 +75,7 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
         $http.post('../database/get_currency.php',{
             currency: $scope.cur
         }).success(function(result){
-            //alert(result);
-            if($scope.cur == "Th-baht"){
+            if($scope.cur == "TH-baht"){
                 $scope.current_currency = "THB ";
             }else{
                 $scope.current_currency = "$";

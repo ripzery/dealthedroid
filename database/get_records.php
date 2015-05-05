@@ -9,5 +9,6 @@ $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
 $tid = $request->tid;
+//get all records that match current transaction
 $records = R::find('records','transactions_id = ' . $tid);
 echo json_encode(R::exportAll($records,true));
