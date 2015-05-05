@@ -3,6 +3,8 @@
  */
 var app = angular.module('store', ['ngRoute', 'ngCart']);
 
+
+//Define route and controller in store,cart,history page
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/store', {
@@ -19,13 +21,16 @@ app.config(function ($routeProvider) {
         });
 });
 
+// Define controller for store page
 app.controller('storeController', function ($scope, $location, $http, ngCart) {
 
+    // check if this page is active
     $scope.isActive = function (route) {
 
         return route === $location.path();
     };
 
+    // send ajax to check session if this user is currectly login
     $http.post('../database/is_login.php')
         .success(function (data) {
             if (data == 'fail') {
@@ -35,8 +40,10 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
             }
         });
 
+    // initialize brands array
     $scope.brands = [];
 
+    // get all mobiles in selected brand
     $scope.getSelectedBrand = function () {
         $scope.mobiles = [];
         if($scope.br != 0) {
@@ -52,10 +59,16 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
         }
     };
 
+    // set default currency to "THB"
     $scope.current_currency = "THB ";
 
+    // set selectable option for currency
     $scope.currency = ["TH-baht", "US-dollars"];
+
+    // set current currnecy to "THB
     $scope.cur = "TH-baht";
+
+    // send ajax request to get result of currency converter
     $scope.getCurrency = function () {
         // Get web services currency converter
         console.log("Sending : " + $scope.cur);
@@ -75,7 +88,10 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
         });
     };
 
+    // initialize mobiles array to show all available mobiles
     $scope.mobiles = [];
+
+    // get all mobiles in database and set brands array which available now
     $scope.loadMobiles = function () {
         return $scope.mobiles.length ? null : $http.get('../database/inventory.php').success(function (data) {
             $scope.mobiles = data;
@@ -96,14 +112,20 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
         });
     };
 
+    // set tax rate 7%
     ngCart.setTaxRate(7);
+
+    // set shipping price 50
     ngCart.setShipping(50);
 
+    // when content has been loaded then load all mobiles from database
     $scope.$on('$viewContentLoaded', function () {
         if($scope.mobiles.length == 0)
             $scope.loadMobiles();
     });
 
+
+    // send ajax to destroy current session
     $scope.logout = function () {
         $http.post('../database/logout.php')
             .success(function (data) {
@@ -114,26 +136,6 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
             });
     };
 
-    $scope.genPdf = function () {
-        var doc = new jsPDF();
-        var source = document.getElementById('table-records');
-        //console.log(source.innerHTML);
-        var specialElementHandlers = {
-            '#textlead': function (element, renderer) {
-                return true;
-            }
-        };
-        doc.fromHTML(
-            source, // [Refer Exact code tutorial][2]HTML string or DOM elem ref.
-            15,    // x coord
-            15,    // y coord
-            {
-                'width': 522, // max width of content on PDF
-                'elementHandlers': specialElementHandlers
-            });
-        doc.output('dataurl');
-    };
-
 });
 
 app.controller('cartController', function ($scope, $location, $http, ngCart) {
@@ -141,17 +143,22 @@ app.controller('cartController', function ($scope, $location, $http, ngCart) {
         return route === $location.path();
     };
 
+    // update cart's status text
     $scope.update = "";
 
+    // if user click cancel then empty the cart
     $scope.cancel = function () {
         ngCart.empty(true);
         //$location.path("/store");
     };
 
+    // return boolean if cart is empty
     $scope.isCartEmpty = function () {
         return ngCart.totalCost() != 0;
     };
 
+
+    // update the stock when customer buy the item
     $scope.confirm = function () {
         var items = ngCart.getItems();
         var tax = ngCart.getTax();
@@ -174,6 +181,7 @@ app.controller('cartController', function ($scope, $location, $http, ngCart) {
         });
     };
 
+    // destroy session
     $scope.logout = function () {
         $http.post('../database/logout.php')
             .success(function (data) {
@@ -193,10 +201,12 @@ app.controller('historyController', function ($scope, $location, $http, ngCart) 
         return route === $location.path();
     };
 
+    // load all transaction when content is loaded
     $scope.$on('$viewContentLoaded', function () {
         $scope.getTransactions();
     });
 
+    // get all transactions and records from the database
     $scope.getTransactions = function () {
         return $scope.transactions.length ? null : $http.post('../database/get_transactions.php').success(function (data) {
             $scope.transactions = data;
@@ -205,6 +215,7 @@ app.controller('historyController', function ($scope, $location, $http, ngCart) 
         });
     };
 
+    // get all records
     $scope.getRecords = function () {
         //alert($scope.selectedTransaction);
         $http.post('../database/get_records.php', {
@@ -215,6 +226,7 @@ app.controller('historyController', function ($scope, $location, $http, ngCart) 
         });
     };
 
+    // destroy session
     $scope.logout = function () {
         $http.post('../database/logout.php')
             .success(function (data) {

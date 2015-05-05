@@ -8,6 +8,8 @@ require('config.inc.php');
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
+
+// Check request value and take request to web services
 if($request->currency == "TH-baht"){
     $from_currency = "USD";
     $to_currency = "THB";
@@ -24,4 +26,5 @@ $doc->saveXML();
 
 $currency = $doc->firstChild->firstChild->textContent;
 
+// return result to ajax
 echo $currency;
