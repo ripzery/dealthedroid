@@ -21,7 +21,6 @@ app.config(function ($routeProvider) {
 
 app.controller('storeController',function($scope,$location,$http,ngCart){
 
-
     $scope.isActive = function (route) {
 
         return route === $location.path();
@@ -58,6 +57,26 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
                 window.location.href = "../#/login";
             }
         });
+    };
+
+    $scope.genPdf = function(){
+        var doc = new jsPDF();
+        var source = document.getElementById('table-records');
+        //console.log(source.innerHTML);
+        var specialElementHandlers = {
+            '#textlead': function(element, renderer) {
+                return true;
+            }
+        };
+        doc.fromHTML(
+            source, // [Refer Exact code tutorial][2]HTML string or DOM elem ref.
+            15,    // x coord
+            15,    // y coord
+            {
+                'width': 522, // max width of content on PDF
+                'elementHandlers': specialElementHandlers
+            });
+        doc.output('dataurl');
     };
 
     //

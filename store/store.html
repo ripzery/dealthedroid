@@ -1,90 +1,39 @@
-<!--<div>-->
-    <!--<h1>Add to Cart </h1>-->
+<div class="container">
+    <div class="well well-sm">
+        <strong>Select brand : </strong>
+    </div>
+    <!--<div></div>-->
+    <div id="products" class="row list-group">
+        <div class="item col-xs-4 col-lg-4" ng-repeat="mobile in mobiles">
 
-    <!--<div class="row">-->
-        <!--<div class="col-xs-6 col-sm-3">-->
-            <!--<h4>My Item #1</h4>-->
+            <div class="thumbnail">
+                <!--<h4 class="group inner list-group-item-heading text-center" style="margin-top: 20px;margin-bottom: 20px;">-->
+                <!--{{ mobile.brand.name + " " + mobile.model}}</h4>-->
+                <img class="group list-group-image" src="../assets/s4.png">
+                <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{ mobile.brand.name + " " + mobile.model}}</h4>
 
-            <!--<p> $10.99</p>-->
-            <!--<ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>-->
-        <!--</div>-->
-        <!--<div class="col-xs-6 col-sm-3">-->
-            <!--<h4>My Item #2</h4>-->
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 
-            <!--<p> $15.29</p>-->
-            <!--<ngcart-addtocart id="item2" name="My Item #2" price="15.29" quantity="1" quantity-max="5">Add to Cart-->
-            <!--</ngcart-addtocart>-->
-        <!--</div>-->
-        <!--<div class="col-xs-6 col-sm-3">-->
-            <!--<h4>My Item #3</h4>-->
-
-            <!--<p> $25.75</p>-->
-            <!--<ngcart-addtocart id="item3" name="My Item #3" price="25.75" quantity="3" quantity-max="10">Add to Cart-->
-            <!--</ngcart-addtocart>-->
-        <!--</div>-->
-        <!--<div class="col-xs-6 col-sm-3">-->
-            <!--<h4>My Item #4</h4>-->
-
-            <!--<p> $29.25</p>-->
-            <!--<ngcart-addtocart id="item4" name="My Item #4" price="29.25" quantity="1" quantity-max="10">Add to Cart-->
-            <!--</ngcart-addtocart>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <div class="container">
-        <div class="well well-sm">
-            <strong>Select brand : </strong>
-        </div>
-        <!--<div></div>-->
-        <div id="products" class="row list-group">
-            <div class="item col-xs-4 col-lg-4"  ng-repeat="mobile in mobiles" >
-
-                <div class="thumbnail">
-                    <!--<h4 class="group inner list-group-item-heading text-center" style="margin-top: 20px;margin-bottom: 20px;">-->
-                        <!--{{ mobile.brand.name + " " + mobile.model}}</h4>-->
-                    <img class="group list-group-image" src="../assets/s4.png">
-                    <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
-                    <div class="caption">
-                        <h4 class="group inner list-group-item-heading">
-                            {{ mobile.brand.name + " " + mobile.model}}</h4>
-                        <p class="group inner list-group-item-text">
-                            Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                        <div class="row" style="margin-top: 20px;min-height: 90px;">
-                            <div class="col-xs-9 col-sm-6">
-                                <p class="lead"> {{ mobile.price | number }} THB</p>
-                            </div>
-                            <div style="margin-right: 10px;">
-                                <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.brand.name + ' ' + mobile.model }}" price="{{ mobile.price }}" quantity="1" quantity-max="{{mobile.quantity}}">
-                                    Add to cart
-                                </ngcart-addtocart>
-                            </div>
+                    <div class="row" style="margin-top: 20px;min-height: 90px;">
+                        <div class="col-xs-9 col-sm-6">
+                            <p class="lead"> {{ mobile.price | number }} THB</p>
+                        </div>
+                        <div style="margin-right: 10px;">
+                            <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.brand.name + ' ' + mobile.model }}"
+                                              price="{{ mobile.price }}" quantity="1"
+                                              quantity-max="{{mobile.quantity}}">
+                                Add to cart
+                            </ngcart-addtocart>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!--<hr/>-->
-    <!--<div class="row">-->
-        <!--<div class="col-md-12">-->
-
-            <!--<h3>Checkout <span> (ngcart-checkout)</span></h3>-->
-
-            <!--<div class="row">-->
-                <!--<div class="col-xs-4">-->
-                    <!--<h4>service 'log'</h4>-->
-                    <!--<ngcart-checkout service="log">Checkout</ngcart-checkout>-->
-                <!--</div>-->
-                <!--<div class="col-xs-4">-->
-                    <!--<h4>service 'http'</h4>-->
-                    <!--<ngcart-checkout service="http" settings="httpSettings">Checkout</ngcart-checkout>-->
-                <!--</div>-->
-            <!--</div>-->
-
-
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
