@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp', ['ui.router']);
 
+// define route and controller for each view
 myApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/welcome");
     $stateProvider
@@ -45,11 +46,16 @@ myApp.controller('welcomeController', function ($scope) {
 
 });
 
+
+// define controller for form validation
 myApp.controller('formController', function ($scope,$http) {
+
+    // define rule that permit form submitted if the value is match the rule
     $scope.passwordrule = "myForm.password.$invalid && myForm.password.$dirty";
     $scope.password2rule = "myForm.password2.$invalid && myForm.password2.$dirty";
     $scope.usernamerule = "myForm.username.$invalid && myForm.username.$dirty";
 
+    // when submit the form, send ajax request to record data in database
     $scope.submitMyForm = function (isValid) {
 
         if (isValid) {
@@ -62,6 +68,7 @@ myApp.controller('formController', function ($scope,$http) {
 
     };
 
+    // when user is logged in, check if user is admin or customer then redirect to accessible page
     $scope.login = function () {
 
         $http.post("database/authen.php", {username: $scope.username, password: $scope.password})
@@ -83,6 +90,7 @@ myApp.controller('formController', function ($scope,$http) {
     };
 });
 
+// define Angularjs' directive to check if two input password is the same
 myApp.directive('passwordMatch', [function () {
     return {
         restrict: 'A',
