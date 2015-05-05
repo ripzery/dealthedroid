@@ -52,10 +52,27 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
         }
     };
 
+    $scope.current_currency = "THB ";
+
     $scope.currency = ["TH-baht", "US-dollars"];
     $scope.cur = "TH-baht";
     $scope.getCurrency = function () {
+        // Get web services currency converter
+        console.log("Sending : " + $scope.cur);
+        $http.post('../database/get_currency.php',{
+            currency: $scope.cur
+        }).success(function(result){
+            //alert(result);
+            if($scope.cur == "Th-baht"){
+                $scope.current_currency = "THB ";
+            }else{
+                $scope.current_currency = "$";
+            }
+            for(var m = 0 ; m < $scope.mobiles.length; m++){
+                $scope.mobiles[m].price *= result;
+            }
 
+        });
     };
 
     $scope.mobiles = [];
@@ -117,12 +134,6 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
         doc.output('dataurl');
     };
 
-    //
-    //$http.post('../database/inventory.php')
-    //    .done(function (result) {
-    //        $scope.mobiles = result;
-    //        $scope.$apply();
-    //    });
 });
 
 app.controller('cartController', function ($scope, $location, $http, ngCart) {
