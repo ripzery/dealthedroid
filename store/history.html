@@ -1,7 +1,12 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-         <label for="selectTransaction">Select transaction :</label>
-         <select id="selectTransaction" name="transaction" id="transaction" ng-model="selectedTransaction" ng-change="getRecords()" ng-options=" transaction.id as transaction.created_time for transaction in transactions"></select>
+        <div class="form-inline">
+            <div class="form-group">
+
+                <label for="selectTransaction">Select transaction :</label>
+                <select id="selectTransaction" class="form-control" style="width: 175px;" name="transaction" ng-model="selectedTransaction" ng-change="getRecords()" ng-options=" transaction.id as transaction.created_time for transaction in transactions"></select>
+            </div>
+        </div>
     </div>
     <div class="panel-body" id="table-records">
         <p class="lead text-center" id="textlead" ng-show="!records.length">Please select the transaction</p>

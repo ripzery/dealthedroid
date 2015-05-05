@@ -1,11 +1,23 @@
+
 <div class="container-fluid">
     <div class="well well-sm">
 
-        <strong>Select brand : </strong>
-        <select></select>
+        <div class=" form-inline">
+            <div class="form-group">
+                <div class="text-left">
+                    <strong>Select brand : </strong>
+                    <select class="form-control"  style="width: 120px;" ng-model="br" ng-change="getSelectedBrand()" ng-options="brand.id as brand.name for brand in brands"></select>
+                </div>
+            </div>
 
 
-        <select class="col-xs-offset-10"></select>
+            <div class="form-group" style="margin-left: 20px;">
+                <label for="currency">Select currency : </label>
+                <select id="currency" ng-options="c for c in currency" ng-model="cur" ng-change="getCurrency()" class="form-control" style="width: 120px;"></select>
+            </div>
+
+        </div>
+
 
     </div>
     <!--<div></div>-->

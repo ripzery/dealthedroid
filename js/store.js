@@ -1,7 +1,7 @@
 /**
  * Created by visit on 5/3/15 AD.
  */
-var app = angular.module('store', ['ngRoute','ngCart']);
+var app = angular.module('store', ['ngRoute', 'ngCart']);
 
 app.config(function ($routeProvider) {
     $routeProvider
@@ -19,7 +19,7 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller('storeController',function($scope,$location,$http,ngCart){
+app.controller('storeController', function ($scope, $location, $http, ngCart) {
 
     $scope.isActive = function (route) {
 
@@ -27,44 +27,82 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
     };
 
     $http.post('../database/is_login.php')
-        .success(function(data){
-            if(data == 'fail'){
+        .success(function (data) {
+            if (data == 'fail') {
                 window.location.href = "../#/login";
-            }else{
+            } else {
                 $scope.username = data;
             }
         });
 
+    $scope.brands = [];
+
+    $scope.getSelectedBrand = function () {
+        $scope.mobiles = [];
+        if($scope.br != 0) {
+            for (var m = 0; m < $scope.allMobiles.length; m++) {
+                console.log($scope.allMobiles[m].brand_id);
+                if ($scope.allMobiles[m].brand_id == $scope.br) {
+                    $scope.mobiles.push($scope.allMobiles[m]);
+
+                }
+            }
+        }else{
+            $scope.mobiles = $scope.allMobiles;
+        }
+    };
+
+    $scope.currency = ["TH-baht", "US-dollars"];
+    $scope.cur = "TH-baht";
+    $scope.getCurrency = function () {
+
+    };
+
     $scope.mobiles = [];
-    $scope.loadMobiles = function() {
-        return $scope.mobiles.length ? null : $http.get('../database/inventory.php').success(function(data) {
+    $scope.loadMobiles = function () {
+        return $scope.mobiles.length ? null : $http.get('../database/inventory.php').success(function (data) {
             $scope.mobiles = data;
+            $scope.allMobiles = data;
+            $scope.brands = [];
+            $scope.brandIndex = [];
+            var all = {id:"0",name:"All"};
+            $scope.br = "0";
+            $scope.brands.push(all);
+            for (var b = 0; b < $scope.allMobiles.length; b++) {
+                //console.log($scope.allMobiles[b].brand.id);
+
+                if ($scope.brandIndex.indexOf($scope.allMobiles[b].brand_id) == -1) {
+                    $scope.brandIndex.push($scope.allMobiles[b].brand_id);
+                    $scope.brands.push($scope.allMobiles[b].brand);
+                }
+            }
         });
     };
 
     ngCart.setTaxRate(7);
     ngCart.setShipping(50);
 
-    $scope.$on('$viewContentLoaded', function() {
-        $scope.loadMobiles();
+    $scope.$on('$viewContentLoaded', function () {
+        if($scope.mobiles.length == 0)
+            $scope.loadMobiles();
     });
 
-    $scope.logout = function(){
+    $scope.logout = function () {
         $http.post('../database/logout.php')
-        .success(function(data){
-            if(data == "success"){
-                ngCart.empty(true);
-                window.location.href = "../#/login";
-            }
-        });
+            .success(function (data) {
+                if (data == "success") {
+                    ngCart.empty(true);
+                    window.location.href = "../#/login";
+                }
+            });
     };
 
-    $scope.genPdf = function(){
+    $scope.genPdf = function () {
         var doc = new jsPDF();
         var source = document.getElementById('table-records');
         //console.log(source.innerHTML);
         var specialElementHandlers = {
-            '#textlead': function(element, renderer) {
+            '#textlead': function (element, renderer) {
                 return true;
             }
         };
@@ -87,23 +125,23 @@ app.controller('storeController',function($scope,$location,$http,ngCart){
     //    });
 });
 
-app.controller('cartController', function ($scope, $location, $http,ngCart) {
+app.controller('cartController', function ($scope, $location, $http, ngCart) {
     $scope.isActive = function (route) {
         return route === $location.path();
     };
 
     $scope.update = "";
 
-    $scope.cancel = function(){
+    $scope.cancel = function () {
         ngCart.empty(true);
         //$location.path("/store");
     };
 
-    $scope.isCartEmpty = function(){
+    $scope.isCartEmpty = function () {
         return ngCart.totalCost() != 0;
     };
 
-    $scope.confirm = function(){
+    $scope.confirm = function () {
         var items = ngCart.getItems();
         var tax = ngCart.getTax();
         var shipping = ngCart.getShipping();
@@ -114,21 +152,21 @@ app.controller('cartController', function ($scope, $location, $http,ngCart) {
             tax: tax,
             shipping: shipping,
             total_price: total_price
-        }).success(function(data){
+        }).success(function (data) {
             console.log(data);
-            if(data == "success"){
+            if (data == "success") {
                 ngCart.empty(true);
                 $scope.update = "Congratulation, you will get your product soon!";
-            }else if(data == "fail"){
+            } else if (data == "fail") {
 
             }
         });
     };
 
-    $scope.logout = function(){
+    $scope.logout = function () {
         $http.post('../database/logout.php')
-            .success(function(data){
-                if(data == "success"){
+            .success(function (data) {
+                if (data == "success") {
                     ngCart.empty(true);
                     window.location.href = "../#/login";
                 }
@@ -148,23 +186,28 @@ app.controller('historyController', function ($scope, $location, $http, ngCart) 
         $scope.getTransactions();
     });
 
-    $scope.getTransactions = function(){
-        return $scope.transactions.length ? null : $http.post('../database/get_transactions.php').success(function(data){ $scope.transactions = data; });
-    };
-
-    $scope.getRecords = function(){
-        //alert($scope.selectedTransaction);
-        $http.post('../database/get_records.php', {
-            tid: $scope.selectedTransaction
-        }).success(function(data){
-            $scope.records = data;
+    $scope.getTransactions = function () {
+        return $scope.transactions.length ? null : $http.post('../database/get_transactions.php').success(function (data) {
+            $scope.transactions = data;
+            $scope.selectedTransaction = $scope.transactions[$scope.transactions.length-1].id;
+            $scope.getRecords();
         });
     };
 
-    $scope.logout = function(){
+    $scope.getRecords = function () {
+        //alert($scope.selectedTransaction);
+        $http.post('../database/get_records.php', {
+            tid: $scope.selectedTransaction
+        }).success(function (data) {
+            $scope.records = data;
+
+        });
+    };
+
+    $scope.logout = function () {
         $http.post('../database/logout.php')
-            .success(function(data){
-                if(data == "success"){
+            .success(function (data) {
+                if (data == "success") {
                     ngCart.empty(true);
                     window.location.href = "../#/login";
                 }
