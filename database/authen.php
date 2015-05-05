@@ -5,6 +5,7 @@ $request = json_decode($postdata);
 //$username = $_POST['username'];
 //$password = $_POST['password'];
 
+// find user that match request username and password
 $user = R::findOne('users', ' username = :username AND password = :password ',
     array(
         ':username' => $request->username,
@@ -12,6 +13,7 @@ $user = R::findOne('users', ' username = :username AND password = :password ',
     )
 );
 
+// if user not null then user is logged in correctly
 if($user){
     session_start();
 

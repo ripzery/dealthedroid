@@ -8,20 +8,16 @@ require('config.inc.php');
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-$android = R::dispense('android');
+//create android row and set all data
 
-//$android->model = $_POST['model'];
-//$android->brand_id = $_POST['brandid'];
-//$android->price = $_POST['price'];
-//$android->quantity = $_POST['quantity'];
-//
+$android = R::dispense('android');
 $android->model = $request->model;
 $android->brand_id = $request->brandid;
 $android->price = $request->price;
 $android->quantity = $request->quantity;
 
+// create relation table between mobiles and brands ( one-to-many )
 $brand = R::load('brand', $android->brand_id);
-
 $brand->ownMobileList[] = $android;
 
 try {
@@ -32,4 +28,5 @@ try {
     return;
 }
 
+//export added mobile object to ajax call
 echo json_encode(R::exportAll($android,true));

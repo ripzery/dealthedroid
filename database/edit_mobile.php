@@ -7,19 +7,17 @@ require('config.inc.php');
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
+
+// load mobile by request id
 $android = R::load('android', $request->id);
 
-
-//$android->model = $_POST['model'];
-//$android->brand_id = $_POST['brandid'];
-//$android->price = $_POST['price'];
-//$android->quantity = $_POST['quantity'];
-//
+// set new mobile data
 $android->model = $request->model;
 $android->brand_id = $request->brandid;
 $android->price = $request->price;
 $android->quantity = $request->quantity;
 
+// create relation 1:many if android has brandid
 if($android->brand_id != null) {
     $brand = R::load('brand', $android->brand_id);
     $brand->ownMobileList[] = $android;
@@ -33,5 +31,5 @@ try {
 //    echo false;
     return;
 }
-
+// return result to the ajax
 echo $android->brand->name . " " .$android->model . " has been updated successfully.";

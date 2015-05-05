@@ -1,5 +1,7 @@
+// define module name and load some external libraries module
 var app = angular.module('management', ['ngRoute', 'angularUtils.directives.dirPagination', 'xeditable']);
 
+// define route for each view and set controller
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/stock', {
@@ -16,10 +18,12 @@ app.config(function ($routeProvider) {
         });
 });
 
+// set theme for x-editable
 app.run(function (editableOptions) {
     editableOptions.theme = 'bs3';
-})
+});
 
+// controller for stock view
 app.controller('stockController', function ($scope, $location, $http, $filter) {
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
@@ -28,14 +32,18 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
     //$scope.brandPageSize = 3;
     //$scope.currentBrandPage = 1;
     //$scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
+
+    // define rule that permit form submitted if the value is match the rule
     $scope.brandrule = "brandForm.brand.$invalid && brandForm.brand.$dirty || duplicateBrand";
     $scope.modelrule = "mobileForm.model.$invalid && mobileForm.model.$dirty || duplicateModel";
     $scope.pricerule = "mobileForm.price.$invalid && mobileForm.price.$dirty ";
     $scope.quantityrule = "mobileForm.quantity.$invalid && mobileForm.quantity.$dirty";
 
+    // init brands array that will inject to select options
     $scope.brands = [];
 
 
+    // check if user is logged in now
     $http.post('../database/is_login.php')
         .success(function(data){
             if(data == "fail"){
@@ -46,6 +54,7 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
         });
 
 
+    // send ajax request to load all brands in the database
     $scope.loadBrands = function () {
         return $scope.brands.length ? null : $http.get('../database/get_brand.php').success(function (data) {
             $scope.brands = data;
@@ -53,11 +62,13 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
     };
 
 
+    // when content is loaded complete, then load all brands from database.
     $scope.$on('$viewContentLoaded', function () {
         $scope.loadBrands();
     });
 
 
+    // send ajax request to add mobile to the database
     $scope.submitmobileForm = function (isValid) {
         if (isValid) {
 
@@ -79,6 +90,7 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
         }
     };
 
+    // send ajax request to submit brand form
     $scope.submitbrandForm = function (isValid) {
         $http.post('../database/add_brand.php', {
             name: $scope.brand
@@ -102,6 +114,7 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
 
     };
 
+    // filter brands before show
     $scope.showBrand = function (mobile) {
         //alert(mobile.brand.name);
         if (mobile.brand_id && $scope.brands.length) {
@@ -151,15 +164,15 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
 
     };
 
-
+    // send ajax request to get all mobiles data
     $.post('../database/inventory.php')
         .done(function (result) {
             var rawData = JSON.parse(result);
             $scope.mobiles = rawData;
             $scope.$apply();
-            //alert(rawData);
         });
 
+    // logging out and redirect to login page
     $scope.logout = function () {
         $http.post('../database/logout.php')
             .success(function (data) {
@@ -172,8 +185,9 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
 app.controller('sellController', function ($scope, $location) {
     $scope.isActive = function (route) {
         return route === $location.path();
-    }
+    };
 
+    // logging out and redirect to login page
     $http.post('../database/logout.php')
         .success(function(data){
             if(data == "success"){
@@ -184,8 +198,9 @@ app.controller('sellController', function ($scope, $location) {
 app.controller('financialController', function ($scope, $location) {
     $scope.isActive = function (route) {
         return route === $location.path();
-    }
+    };
 
+    // logging out and redirect to login page
     $http.post('../database/logout.php')
         .success(function(data){
             if(data == "success"){

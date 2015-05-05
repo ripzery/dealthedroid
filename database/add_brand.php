@@ -7,6 +7,7 @@ require('config.inc.php');
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
+// add the brand
 $brand = R::dispense('brand');
 $brand->name = $request->name;
 
@@ -17,5 +18,5 @@ try {
     echo false;
     return;
 }
-
+//return brand object
 echo json_encode($brand->export());
