@@ -24,11 +24,13 @@ app.run(function (editableOptions) {
 });
 
 // controller for stock view
-app.controller('stockController', function ($scope, $location, $http, $filter) {
+app.controller('stockController', function ($scope, $location, $http, $filter, $timeout) {
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
+    $scope.showMessage = false;
     $scope.currentPage = 1;
-    $scope.pageSize = 6;
+    $scope.pageSize = 4;
+    $scope.message = "Save successfully.";
     //$scope.brandPageSize = 3;
     //$scope.currentBrandPage = 1;
     //$scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
@@ -45,11 +47,13 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
 
     // check if user is logged in now
     $http.post('../database/is_login.php')
-        .success(function(data){
-            if(data == "fail"){
+        .success(function (data) {
+            if (data == "fail") {
                 window.location.href = "../#/login";
-            }else{
+            } else {
                 $scope.username = data;
+                if ($scope.username != "admin")
+                    window.location.href = "../#/login";
             }
         });
 
@@ -76,9 +80,15 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
                 brandid: $scope.selectedItem,
                 model: $scope.model,
                 price: $scope.price,
-                quantity: $scope.quantity
+                quantity: $scope.quantity,
+                description: $scope.description
             }).success(function (data, status, headers, config) {
                 if (data) {
+
+                    $scope.showMessage = true;
+                    $timeout(function () {
+                        $scope.showMessage = false;
+                    }, 3000);
                     $scope.duplicateModel = false;
                     $scope.mobiles.push(data[0]);
                 }
@@ -182,29 +192,29 @@ app.controller('stockController', function ($scope, $location, $http, $filter) {
             });
     };
 });
-app.controller('sellController', function ($scope, $location) {
-    $scope.isActive = function (route) {
-        return route === $location.path();
-    };
-
-    // logging out and redirect to login page
-    $http.post('../database/logout.php')
-        .success(function(data){
-            if(data == "success"){
-                window.location.href = "../#/login";
-            }
-        });
-});
-app.controller('financialController', function ($scope, $location) {
-    $scope.isActive = function (route) {
-        return route === $location.path();
-    };
-
-    // logging out and redirect to login page
-    $http.post('../database/logout.php')
-        .success(function(data){
-            if(data == "success"){
-                window.location.href = "../#/login";
-            }
-        });
-});
+//app.controller('sellController', function ($scope, $location) {
+//    $scope.isActive = function (route) {
+//        return route === $location.path();
+//    };
+//
+//    // logging out and redirect to login page
+//    $http.post('../database/logout.php')
+//        .success(function(data){
+//            if(data == "success"){
+//                window.location.href = "../#/login";
+//            }
+//        });
+//});
+//app.controller('financialController', function ($scope, $location) {
+//    $scope.isActive = function (route) {
+//        return route === $location.path();
+//    };
+//
+//    // logging out and redirect to login page
+//    $http.post('../database/logout.php')
+//        .success(function(data){
+//            if(data == "success"){
+//                window.location.href = "../#/login";
+//            }
+//        });
+//});

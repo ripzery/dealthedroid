@@ -27,6 +27,7 @@ $transaction->created_time = $current_datetime;
 $transaction->total_price = $total_price;
 $transaction->tax = $tax;
 $transaction->shipping = $shipping;
+$transaction->currency = $request->currency == null ? "THB" : $request->currency ;
 
 // Create relation one-to-many : user-to-transactions
 $current_user->ownTransactions[] = $transaction;
@@ -62,7 +63,7 @@ foreach($all_items as $update_item){
     // Create new record
     $record = R::dispense('records');
     $name = [];
-    $name = explode(" ",$update_item->_name,2);
+    $name = explode(" ",$update_item->_name,2); // separate "brand","model"
     $record->brand = $name[0];
     $record->model = $name[1];
     $record->quantity = $update_item->_quantity;

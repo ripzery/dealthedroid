@@ -31,21 +31,21 @@
                     <td></td>
                     <td></td>
                     <td>Tax 7% : </td>
-                    <td>{{ records[0].transactions.tax | currency : 'THB ' }}</td>
+                    <td>{{ records[0].transactions.tax | currency : records[0].transactions.currency }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>Shipping : </td>
-                    <td>{{ records[0].transactions.shipping | currency : 'THB ' }}</td>
+                    <td>{{ records[0].transactions.shipping | currency : records[0].transactions.currency }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>Total : </td>
-                    <td>{{ records[0].transactions.total_price  | currency : 'THB ' }}</td>
+                    <td>{{ records[0].transactions.total_price  | currency : records[0].transactions.currency  }}</td>
                 </tr>
             </tbody>
         </table>

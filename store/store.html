@@ -1,57 +1,68 @@
-
 <div class="container-fluid">
     <div class="well well-sm">
 
         <div class=" form-inline">
+
+            <!-- get selected brand-->
             <div class="form-group">
                 <div class="text-left">
                     <strong>Select brand : </strong>
-                    <select class="form-control"  style="width: 120px;" ng-model="br" ng-change="getSelectedBrand()" ng-options="brand.id as brand.name for brand in brands"></select>
+                    <select class="form-control" style="width: 120px;" ng-model="br" ng-change="getSelectedBrand()"
+                            ng-options="brand.id as brand.name for brand in brands"></select>
                 </div>
             </div>
 
 
+            <!--  currency -->
             <div class="form-group" style="margin-left: 20px;">
                 <label for="currency">Select currency : </label>
-                <select id="currency" ng-options="c for c in currency" ng-model="cur" ng-change="getCurrency()" class="form-control" style="width: 120px;"></select>
+                <select id="currency" ng-options="c for c in currency" ng-model="cur" ng-change="getCurrency()"
+                        class="form-control" style="width: 120px;"></select>
             </div>
-
         </div>
 
 
     </div>
-    <!--<div></div>-->
-    <div id="products" class="row list-group">
-        <div class="item col-xs-4 col-lg-4" ng-repeat="mobile in mobiles">
 
+
+    <div id="products" class="row list-group">
+
+        <!-- fetch all mobiles in store.js -> storeController and repeat all mobiles here -->
+        <div class="item col-xs-4 col-lg-4" ng-repeat="mobile in mobiles">
             <div class="thumbnail">
-                <!--<h4 class="group inner list-group-item-heading text-center" style="margin-top: 20px;margin-bottom: 20px;">-->
-                <!--{{ mobile.brand.name + " " + mobile.model}}</h4>-->
                 <img class="group list-group-image" src="../assets/s4.png">
-                <!--<img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />-->
+
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
                         {{ mobile.brand.name + " " + mobile.model}}</h4>
 
                     <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                        {{ mobile.description }}</p>
 
                     <div class="row" style="margin-top: 20px;min-height: 90px;">
+
+                        <!-- get mobile price and set currency -->
                         <div class="col-xs-9 col-sm-6">
                             <p class="lead"> {{ mobile.price | currency: current_currency}}</p>
                         </div>
-                        <div style="margin-right: 10px;">
+
+                        <div style="margin-right: 15px;">
+
+                            <!-- generate add to cart view in template -> addtocard.html -->
                             <ngcart-addtocart id="{{ mobile.id }}" name="{{ mobile.brand.name + ' ' + mobile.model }}"
                                               price="{{ mobile.price }}" quantity="1"
                                               quantity-max="{{mobile.quantity}}">
                                 Add to cart
                             </ngcart-addtocart>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- End of repeat -->
+
+
     </div>
 </div>
 

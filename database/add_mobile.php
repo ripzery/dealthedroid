@@ -15,6 +15,8 @@ $android->model = $request->model;
 $android->brand_id = $request->brandid;
 $android->price = $request->price;
 $android->quantity = $request->quantity;
+if($request->description != null)
+$android->description = $request->description;
 
 // create relation table between mobiles and brands ( one-to-many )
 $brand = R::load('brand', $android->brand_id);

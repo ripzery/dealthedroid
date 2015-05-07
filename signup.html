@@ -2,13 +2,20 @@
 <div class="row-xs-8">
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-offset-1 col-xs-10">
         <div class="panel panel-primary" id="content">
+
             <div class="panel-heading">
                 <h1 class="text-center">Registration</h1>
             </div>
+
             <div class="panel-body">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+
+                    <!--when sending this form call function submitMyForm in app.js-->
                     <form class="form-horizontal" role="form" ng-model="myForm" name="myForm"
                           ng-submit="submitMyForm(myForm.$valid)" novalidate method="post">
+
+
+                        <!-- define username input with validation rule -->
                         <div class="form-group" ng-class="{ 'has-error' : {{usernamerule}}}">
                             <div class="col-lg-3">
                                 <label class="control-label">Username </label>
@@ -32,6 +39,8 @@
 
                         </div>
 
+
+                        <!-- define password input with validation rule [ required, contain number, uppercase and lowercase, minimum 8 characters]-->
                         <div class="form-group" ng-class="{'has-error' : {{ passwordrule }}}">
                             <div class="col-lg-3">
                                 <label for="password" class="control-label">Password</label>
@@ -58,6 +67,7 @@
                             </div>
                         </div>
 
+                        <!-- define confirm input with validation rule [must be match the password]-->
                         <div class="form-group" ng-class="{'has-error' : {{ password2rule }}}">
                             <div class="col-lg-3">
                                 <label class="control-label" for="password2">Confirm</label>
@@ -75,13 +85,12 @@
                             </div>
                         </div>
 
+                        <!-- submit form -->
                         <div class="form-group">
                             <button class="btn btn-primary btn-lg center-block" ng-disabled="myForm.$invalid"
                                     id="register"> Submit
                             </button>
-                            <!--<button class="btn btn-primary" id="reset" ng-click="resetForm()"> Reset</button>-->
                         </div>
-
                     </form>
                 </div>
 

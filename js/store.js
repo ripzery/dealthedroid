@@ -60,7 +60,10 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
     };
 
     // set default currency to "THB"
-    $scope.current_currency = "THB ";
+    $scope.current_currency = "THB";
+    if(ngCart.getItems().length != 0){
+        ngCart.getItems()[0].setData($scope.current_currency);
+    }
 
     // set selectable option for currency
     $scope.currency = ["TH-baht", "US-dollars"];
@@ -76,10 +79,16 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
             currency: $scope.cur
         }).success(function(result){
             if($scope.cur == "TH-baht"){
-                $scope.current_currency = "THB ";
+                $scope.current_currency = "THB";
             }else{
                 $scope.current_currency = "$";
             }
+            ngCart.getItems()[0].setData($scope.current_currency);
+            cartItems = ngCart.getItems();
+            for(var m = 0 ; m < cartItems.length; m++){
+                cartItems[m].setPrice(cartItems[m].getPrice()*result);
+            }
+
             for(var m = 0 ; m < $scope.mobiles.length; m++){
                 $scope.mobiles[m].price *= result;
             }
@@ -116,6 +125,8 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
 
     // set shipping price 50
     ngCart.setShipping(50);
+
+    //ngCart.getItems()[0].getData();
 
     // when content has been loaded then load all mobiles from database
     $scope.$on('$viewContentLoaded', function () {
@@ -168,7 +179,8 @@ app.controller('cartController', function ($scope, $location, $http, ngCart) {
             items: items,
             tax: tax,
             shipping: shipping,
-            total_price: total_price
+            total_price: total_price,
+            currency: items[0].getData()
         }).success(function (data) {
             console.log(data);
             if (data == "success") {

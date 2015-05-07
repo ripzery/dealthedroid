@@ -1,4 +1,4 @@
-<div class="row ">
+<div class="row " xmlns="http://www.w3.org/1999/html">
     <div class="col-lg-6">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
@@ -31,7 +31,8 @@
                 <div class="col-lg-1"></div>
 
                 <div class="col-lg-6">
-                    <form ng-model="mobileForm" name="mobileForm" ng-submit="submitmobileForm(mobileForm.$valid)" novalidate
+                    <form ng-model="mobileForm" name="mobileForm" ng-submit="submitmobileForm(mobileForm.$valid)"
+                          novalidate
                           method="post">
                         <div class="form-group">
                             <label for="selectBrand" style="margin-right: 10px;">Select brand : </label>
@@ -45,7 +46,7 @@
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error' : {{modelrule}}}">
-                            <label for="model">Model</label>
+                            <label for="model">Model (Required)</label>
                             <input type="text" class="form-control" name="model" id="model" ng-model="model" required
                                    pattern="[a-zA-Z0-9 ]+" placeholder="Model">
 
@@ -55,15 +56,17 @@
                                     required! </p>
 
                                 <p class="help-block"
-                                   ng-show=" mobileForm.model.$error.pattern && !mobileForm.model.$pristine "> Model isn't
+                                   ng-show=" mobileForm.model.$error.pattern && !mobileForm.model.$pristine "> Model
+                                    isn't
                                     match the pattern! </p>
 
                                 <p class="help-block" ng-show=" duplicateModel">Duplicate model!</p>
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error' : {{pricerule}} }">
-                            <label for="price">Price</label>
-                            <input class="form-control" name="price" id="price" ng-model="price" required pattern="[0-9]+"
+                            <label for="price">Price (Required)</label>
+                            <input class="form-control" name="price" id="price" ng-model="price" required
+                                   pattern="[0-9]+"
                                    placeholder="Price">
 
                             <div>
@@ -72,33 +75,48 @@
                                     required!</p>
 
                                 <p class="help-block"
-                                   ng-show=" mobileForm.price.$error.pattern && !mobileForm.price.$pristine">Price must be a
+                                   ng-show=" mobileForm.price.$error.pattern && !mobileForm.price.$pristine">Price must
+                                    be a
                                     number!</p>
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error' : {{quantityrule}} }">
-                            <label for="quantity">Quantity</label>
+                            <label for="quantity">Quantity (Optional)</label>
                             <input class="form-control" id="quantity" name="quantity" ng-model="quantity" required
-                                   pattern="[0-9]+" placeholder="Quantity">
+                                   pattern="[0-9]+" placeholder="Quantity ">
 
                             <div>
                                 <p class="help-block"
-                                   ng-show=" mobileForm.quantity.$error.required && !mobileForm.quantity.$pristine">Quantity
+                                   ng-show=" mobileForm.quantity.$error.required && !mobileForm.quantity.$pristine">
+                                    Quantity
                                     is required!</p>
 
                                 <p class="help-block"
-                                   ng-show=" mobileForm.quantity.$error.pattern && !mobileForm.quantity.$pristine">Quantity
+                                   ng-show=" mobileForm.quantity.$error.pattern && !mobileForm.quantity.$pristine">
+                                    Quantity
                                     must be a number!</p>
                             </div>
 
                         </div>
+                        <div class="form-group">
+                            <label for="quantity">Description (Optional)</label>
+                            <textarea class="form-control" id="description" rows="5" name="description"
+                                      ng-model="description"
+                                      placeholder="Description"></textarea>
+                        </div>
+
+                        <div class="form-group" ng-show="showMessage">
+                            <div class="alert alert-success"  ng-model="message">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Yay !</strong> {{ message }}
+                            </div>
+                        </div>
+
+
                         <button type="submit" class="btn btn-primary" ng-disabled="mobileForm.$invalid">Submit</button>
 
                     </form>
                 </div>
-
-
-
 
                 <br>
                 <hr>
@@ -131,68 +149,73 @@
                     </div>
                 </div>
                 <div style="margin: 15px">
-                <table id="mobile-table" class="table table-responsive table-striped">
-                    <thead id="thead">
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-                    </thead>
-                    <tbody id="tbody">
-                    <tr  dir-paginate="mobile in mobiles | filter: q | itemsPerPage: pageSize" current-page="currentPage"
-                        pagination-id="mobile-page">
-                        <td style="width: 20%">
-                            <!-- editable username (select-remote) -->
-                        <span editable-select="mobile.brand_id" onbeforesave="updateBrand($data)"  e-name="brand_id" e-form="rowform" e-ng-options="b.id as b.name for b in brands" e-required>
+                    <table id="mobile-table" class="table table-responsive table-striped">
+                        <thead id="thead">
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody id="tbody">
+                        <tr dir-paginate="mobile in mobiles | filter: q | itemsPerPage: pageSize"
+                            current-page="currentPage"
+                            pagination-id="mobile-page">
+                            <td style="width: 20%">
+                                <!-- editable username (select-remote) -->
+                        <span editable-select="mobile.brand_id" onbeforesave="updateBrand($data)" e-name="brand_id"
+                              e-form="rowform" e-ng-options="b.id as b.name for b in brands" e-required>
                             <!--{{ //selectedBrand }}-->
                             {{showBrand( mobile )}}
                             <!--{{ mobile.brand.name || 'not set' }}-->
                             <!--{{ findTypeName($data.brand_id) || mobile.brand.name}}-->
                         </span>
-                        </td>
-                        <td style="width: 20%">
+                            </td>
+                            <td style="width: 20%">
 
-                            <!-- editable model (text with validation) -->
+                                <!-- editable model (text with validation) -->
                         <span editable-text="mobile.model" e-name="model" e-form="rowform"
                               onbeforesave="checkName($data, mobile.model)" e-required>
                           {{ mobile.model || 'empty' }}
                         </span>
-                        </td>
-                        <td style="width: 20%">
+                            </td>
+                            <td style="width: 20%">
 
-                            <!-- editable price (text with validation) -->
+                                <!-- editable price (text with validation) -->
                         <span editable-text="mobile.price" e-name="price" e-form="rowform"
                               onbeforesave="checkName($data, mobile.price)" e-required>
                           {{ ( mobile.price | number) || 'empty' }}
                         </span>
-                        </td>
-                        <td style="width: 10%">
+                            </td>
+                            <td style="width: 10%">
 
-                            <!-- editable quantity (text with validation) -->
+                                <!-- editable quantity (text with validation) -->
                         <span editable-text="mobile.quantity" e-name="quantity" e-form="rowform"
                               onbeforesave="checkName($data, mobile.quantity)" e-required>
                           {{ mobile.quantity || 'empty' }}
                         </span>
-                        </td>
-                        <td style="white-space: nowrap;width: 30%;">
-                            <!-- form -->
-                            <form editable-form name="rowform" onbeforesave="saveMobile($data, mobile.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == mobile">
-                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                                    Save
-                                </button>
-                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-                                    Cancel
-                                </button>
-                            </form>
-                            <div class="buttons" ng-show="!rowform.$visible">
-                                <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
-                                <button class="btn btn-default" ng-click="removeMobile($index)">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            </td>
+                            <td style="white-space: nowrap;width: 30%;">
+                                <!-- form -->
+                                <form editable-form name="rowform" onbeforesave="saveMobile($data, mobile.id)"
+                                      ng-show="rowform.$visible" class="form-buttons form-inline"
+                                      shown="inserted == mobile">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+                                            class="btn btn-default">
+                                        Cancel
+                                    </button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                                    <button class="btn btn-default" ng-click="removeMobile($index)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="panel-footer text-center">
@@ -206,24 +229,30 @@
                             class="fa fa-bars"></i> Export page data
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="nav-locator-dropdown">
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'json',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#stock"
+                               onClick="$('#mobile-table').tableExport({type:'json',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/json.png' width='24px'> JSON</a></li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'xml',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#stock"
+                               onClick="$('#mobile-table').tableExport({type:'xml',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/xml.png' width='24px'> XML</a></li>
                         <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'sql',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/sql.png' width='24px'> SQL</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'csv',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#stock"
+                               onClick="$('#mobile-table').tableExport({type:'csv',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/csv.png' width='24px'> CSV</a></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'txt',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#stock"
+                               onClick="$('#mobile-table').tableExport({type:'txt',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/txt.png' width='24px'> TXT</a></li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'excel',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#stock"
+                               onClick="$('#mobile-table').tableExport({type:'excel',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/xls.png' width='24px'> XLS</a></li>
                         <li class="divider"></li>
-                        <li><a href="#stock" onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false',ignoreColumn:'[4]'});">
+                        <li><a href="#stock"
+                               onClick="$('#mobile-table').tableExport({type:'pdf',escape:'false',ignoreColumn:'[4]'});">
                             <img src='../assets/icons/pdf.png' width='24px'> PDF</a></li>
 
                     </ul>
