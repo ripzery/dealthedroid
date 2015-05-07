@@ -147,9 +147,31 @@ app.controller('stockController', function ($scope, $location, $http, $filter, $
 
     // Don't delete this because it's tricky way to update data.
     $scope.checkName = function (data, mobile) {
-        //if (id === 2 && data !== 'awesome') {
-        //    return "Username 2 should be `awesome`";
-        //}
+        //alert(data.trim());
+        //var regExp = new RegExp("[a-zA-Z0-9]+");
+        if(data == ""){
+            return "Must not empty";
+        }else if(data.indexOf(" ") == 0){
+            return "Must not be space in first char";
+        }else if(/^[a-zA-Z0-9- ]*$/.test(data) == false){
+            return "Wrong pattern.";
+        }
+    };
+
+    $scope.checkPrice = function (data, mobile) {
+        if(isNaN(data)) {
+            return "Must be a number";
+        }else if(data < 1){
+            return "Should more than 0";
+        }
+    };
+
+    $scope.checkQuantity = function (data, mobile) {
+        if(isNaN(data)) {
+            return "Must be a number";
+        }else if(data < 1){
+            return "Should more than 0";
+        }
     };
 
     // Edit and save mobile

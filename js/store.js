@@ -22,13 +22,15 @@ app.config(function ($routeProvider) {
 });
 
 // Define controller for store page
-app.controller('storeController', function ($scope, $location, $http, ngCart) {
+app.controller('storeController', function ($scope, $location, $http, ngCart, $rootScope) {
 
     // check if this page is active
     $scope.isActive = function (route) {
 
         return route === $location.path();
     };
+
+    $scope.itemCost = ngCart.totalCost();
 
     // send ajax to check session if this user is currectly login
     $http.post('../database/is_login.php')
@@ -39,6 +41,10 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
                 $scope.username = data;
             }
         });
+
+    $rootScope.$on('ngCart:change', function(){
+        $scope.itemCost = ngCart.totalCost();
+    });
 
     // initialize brands array
     $scope.brands = [];
@@ -127,6 +133,9 @@ app.controller('storeController', function ($scope, $location, $http, ngCart) {
     ngCart.setShipping(50);
 
     //ngCart.getItems()[0].getData();
+    $scope.$on('change', function(event, mass) {
+        console.log(mass)
+    });
 
     // when content has been loaded then load all mobiles from database
     $scope.$on('$viewContentLoaded', function () {

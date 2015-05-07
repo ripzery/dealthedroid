@@ -14,7 +14,7 @@
 
 
             <!--  currency -->
-            <div class="form-group" style="margin-left: 20px;">
+            <div class="form-group" style="margin-left: 20px;" ng-show="itemCost > 0">
                 <label for="currency">Select currency : </label>
                 <select id="currency" ng-options="c for c in currency" ng-model="cur" ng-change="getCurrency()"
                         class="form-control" style="width: 120px;"></select>

@@ -1,5 +1,5 @@
 <div class="row " xmlns="http://www.w3.org/1999/html">
-    <div class="col-lg-6">
+    <div class="col-lg-5">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading">
@@ -14,13 +14,10 @@
                             <label for="brand">Brand</label>
                             <input class="form-control" id="brand" name="brand" ng-model="brand"
                                    pattern="[a-zA-Z0-9]+" placeholder="Brand name">
-
                             <div>
-
                                 <p class="help-block"
                                    ng-show=" brandForm.brand.$error.pattern && !brandForm.brand.$pristine">
                                     Don't insert special characters!</p>
-
                                 <p class="help-block" ng-show="duplicateBrand">Duplicate brand!</p>
                             </div>
                         </div>
@@ -56,7 +53,7 @@
                         <div class="form-group" ng-class="{'has-error' : {{modelrule}}}">
                             <label for="model">Model (Required)</label>
                             <input type="text" class="form-control" name="model" id="model" ng-model="model" required
-                                   pattern="[a-zA-Z0-9 ]+" placeholder="Model">
+                                   pattern="[a-zA-Z0-9]+"  placeholder="Model">
 
                             <div>
                                 <p class="help-block"
@@ -73,25 +70,17 @@
                         </div>
                         <div class="form-group" ng-class="{'has-error' : {{pricerule}} }">
                             <label for="price">Price (Required)</label>
-                            <input class="form-control" name="price" id="price" ng-model="price" required
-                                   pattern="[0-9]+"
+                            <input class="form-control" type="number" min="1" max="1000000" name="price" id="price"  ng-model="price" required
                                    placeholder="Price">
-
                             <div>
-                                <p class="help-block"
-                                   ng-show=" mobileForm.price.$error.required && !mobileForm.price.$pristine"> Price is
-                                    required!</p>
-
-                                <p class="help-block"
-                                   ng-show=" mobileForm.price.$error.pattern && !mobileForm.price.$pristine">Price must
-                                    be a
-                                    number!</p>
+                                <p class="help-block" ng-show=" mobileForm.price.$error.required && !mobileForm.price.$pristine"> Price is required!</p>
+                                <p class="help-block" ng-show=" mobileForm.price.$error.min && !mobileForm.price.$pristine"> Price at least 1!</p>
                             </div>
                         </div>
                         <div class="form-group" ng-class="{'has-error' : {{quantityrule}} }">
                             <label for="quantity">Quantity (Optional)</label>
                             <input class="form-control" id="quantity" name="quantity" ng-model="quantity" required
-                                   pattern="[0-9]+" placeholder="Quantity ">
+                                   min="1" max="1000000" type="number" placeholder="Quantity ">
 
                             <div>
                                 <p class="help-block"
@@ -99,10 +88,7 @@
                                     Quantity
                                     is required!</p>
 
-                                <p class="help-block"
-                                   ng-show=" mobileForm.quantity.$error.pattern && !mobileForm.quantity.$pristine">
-                                    Quantity
-                                    must be a number!</p>
+                                <p class="help-block" ng-show=" mobileForm.quantity.$error.min && !mobileForm.quantity.$pristine"> Quantity at least 1!</p>
                             </div>
 
                         </div>
@@ -135,7 +121,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-7">
         <div class="panel panel-primary">
             <!-- Default panel contents -->
             <div class="panel-heading text"><span class="glyphicon glyphicon-folder-open"></span>Inventory List</div>
@@ -169,7 +155,7 @@
                         <tr dir-paginate="mobile in mobiles | filter: q | itemsPerPage: pageSize"
                             current-page="currentPage"
                             pagination-id="mobile-page">
-                            <td style="width: 20%">
+                            <td style="width: 15%">
                                 <!-- editable username (select-remote) -->
                         <span editable-select="mobile.brand_id" onbeforesave="updateBrand($data)" e-name="brand_id"
                               e-form="rowform" e-ng-options="b.id as b.name for b in brands" e-required>
@@ -179,7 +165,7 @@
                             <!--{{ findTypeName($data.brand_id) || mobile.brand.name}}-->
                         </span>
                             </td>
-                            <td style="width: 20%">
+                            <td style="width: 25%">
 
                                 <!-- editable model (text with validation) -->
                         <span editable-text="mobile.model" e-name="model" e-form="rowform"
@@ -190,20 +176,20 @@
                             <td style="width: 20%">
 
                                 <!-- editable price (text with validation) -->
-                        <span editable-text="mobile.price" e-name="price" e-form="rowform"
-                              onbeforesave="checkName($data, mobile.price)" e-required>
+                        <span editable-number="mobile.price" e-name="price" e-form="rowform"
+                              onbeforesave="checkPrice($data, mobile.price)" e-required>
                           {{ ( mobile.price | number) || 'empty' }}
                         </span>
                             </td>
-                            <td style="width: 10%">
+                            <td style="width: 20%">
 
                                 <!-- editable quantity (text with validation) -->
-                        <span editable-text="mobile.quantity" e-name="quantity" e-form="rowform"
-                              onbeforesave="checkName($data, mobile.quantity)" e-required>
-                          {{ mobile.quantity || 'empty' }}
+                        <span editable-number="mobile.quantity" e-name="quantity" e-form="rowform"
+                              onbeforesave="checkQuantity($data, mobile.quantity)" e-required>
+                          {{(mobile.quantity | number)  || 'empty' }}
                         </span>
                             </td>
-                            <td style="white-space: nowrap;width: 30%;">
+                            <td style="white-space: nowrap;width: 20%;">
                                 <!-- form -->
                                 <form editable-form name="rowform" onbeforesave="saveMobile($data, mobile.id)"
                                       ng-show="rowform.$visible" class="form-buttons form-inline"
