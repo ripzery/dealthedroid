@@ -24,6 +24,14 @@
                                 <p class="help-block" ng-show="duplicateBrand">Duplicate brand!</p>
                             </div>
                         </div>
+
+                        <div class="form-group" ng-show="showMessageBrand">
+                            <div class="alert alert-success"  ng-model="messageBrand">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Yay !</strong> {{ messageBrand }}
+                            </div>
+                        </div>
+
                         <button type="submit" class="btn btn-primary" ng-disabled="brandForm.$invalid">Add</button>
                     </form>
                 </div>
@@ -101,7 +109,7 @@
                         <div class="form-group">
                             <label for="quantity">Description (Optional)</label>
                             <textarea class="form-control" id="description" rows="5" name="description"
-                                      ng-model="description"
+                                      ng-model="description" maxlength="160"
                                       placeholder="Description"></textarea>
                         </div>
 

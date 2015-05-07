@@ -28,9 +28,12 @@ app.controller('stockController', function ($scope, $location, $http, $filter, $
     $scope.duplicateModel = false;
     $scope.duplicateBrand = false;
     $scope.showMessage = false;
+    $scope.showMessageBrand = false;
     $scope.currentPage = 1;
     $scope.pageSize = 4;
     $scope.message = "Save successfully.";
+    $scope.messageBrand = "Added brand!";
+
     //$scope.brandPageSize = 3;
     //$scope.currentBrandPage = 1;
     //$scope.brandidrule = "mobileForm.brandid.$invalid && mobileForm.brandid.$dirty";
@@ -102,12 +105,18 @@ app.controller('stockController', function ($scope, $location, $http, $filter, $
 
     // send ajax request to submit brand form
     $scope.submitbrandForm = function (isValid) {
+
+
         $http.post('../database/add_brand.php', {
             name: $scope.brand
         }).success(function (data, status, headers, config) {
             if (data) {
                 $scope.duplicateBrand = false;
                 $scope.brands.push(data);
+                $scope.showMessageBrand = true;
+                $timeout(function () {
+                    $scope.showMessageBrand = false;
+                }, 3000);
             } else {
                 $scope.duplicateBrand = true;
             }
