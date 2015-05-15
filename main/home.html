@@ -53,7 +53,7 @@
                         <div class="form-group" ng-class="{'has-error' : {{modelrule}}}">
                             <label for="model">Model (Required)</label>
                             <input type="text" class="form-control" name="model" id="model" ng-model="model" required
-                                   pattern="[a-zA-Z0-9]+"  placeholder="Model">
+                                   pattern="[a-zA-Z0-9 ]+"  placeholder="Model">
 
                             <div>
                                 <p class="help-block"
@@ -61,9 +61,7 @@
                                     required! </p>
 
                                 <p class="help-block"
-                                   ng-show=" mobileForm.model.$error.pattern && !mobileForm.model.$pristine "> Model
-                                    isn't
-                                    match the pattern! </p>
+                                   ng-show=" mobileForm.model.$error.pattern && !mobileForm.model.$pristine "> Model isn't match the pattern! </p>
 
                                 <p class="help-block" ng-show=" duplicateModel">Duplicate model!</p>
                             </div>
