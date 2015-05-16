@@ -56,13 +56,12 @@ foreach($all_items as $update_item){
             R::store($mobile); // else decrease quantity of the model in stock.
         }
     }catch(Exception $e){
-        echo "fail";
+        echo $e;
         return;
     }
 
     // Create new record
     $record = R::dispense('records');
-    $name = [];
     $name = explode(" ",$update_item->_name,2); // separate "brand","model"
     $record->brand = $name[0];
     $record->model = $name[1];

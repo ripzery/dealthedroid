@@ -183,7 +183,7 @@ app.controller('cartController', function ($scope, $location, $http, ngCart) {
         var tax = ngCart.getTax();
         var shipping = ngCart.getShipping();
         var total_price = ngCart.totalCost();
-        console.log(items);
+        //console.log(items);
         $http.post('../database/update_stock.php', {
             items: items,
             tax: tax,
