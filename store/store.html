@@ -24,9 +24,8 @@
 
 
     <div id="products" class="row list-group">
-
         <!-- fetch all mobiles in store.js -> storeController and repeat all mobiles here -->
-        <div class="item col-lg-4 col-md-4 col-sm-6  col-xs-18 " ng-repeat="mobile in mobiles">
+        <div class="item col-lg-4 col-md-6 col-sm-6  col-xs-18 " ng-repeat="mobile in mobiles">
             <div class="thumbnail">
                 <img class="group list-group-image" src="../assets/s4.png">
 
@@ -44,7 +43,7 @@
                             <p class="lead"> {{ mobile.price | currency: current_currency}}</p>
                         </div>
 
-                        <div style="margin-right: 15px;">
+                        <div style="margin-left: 15px;margin-right: 15px;">
 
                             <!-- generate add to cart view in template -> addtocard.html -->
 
