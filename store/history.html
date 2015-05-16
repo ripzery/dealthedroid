@@ -8,9 +8,9 @@
             </div>
         </div>
     </div>
-    <div class="panel-body" id="table-records">
+    <div class="panel-body" id="no-more-tables">
         <p class="lead text-center" id="textlead" ng-show="!records.length">Please select the transaction</p>
-        <table id="transaction-table" class="table table-striped" ng-show="records.length">
+        <table id="transaction-table" class="table table-striped table-condensed" ng-show="records.length">
             <thead ng-show="records.length">
                 <th>ID</th>
                 <th>Brand</th>
@@ -20,32 +20,32 @@
             </thead>
             <tbody>
                 <tr ng-repeat="record in records">
-                    <td>{{ record.id }}</td>
-                    <td>{{ record.brand }}</td>
-                    <td>{{ record.model }}</td>
-                    <td>{{ record.price | currency : 'THB '}}</td>
-                    <td>{{ record.quantity }}</td>
+                    <td data-title="ID">{{ record.id }}</td>
+                    <td data-title="Brand">{{ record.brand }}</td>
+                    <td data-title="Model">{{ record.model }}</td>
+                    <td data-title="Price">{{ record.price | currency : 'THB '}}</td>
+                    <td data-title="Quantity">{{ record.quantity }}</td>
                 </tr>
                 <tr >
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
                     <td>Tax 7% : </td>
-                    <td>{{ records[0].transactions.tax | currency : records[0].transactions.currency }}</td>
+                    <td data-title="Tax">{{ records[0].transactions.tax | currency : records[0].transactions.currency }}</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
                     <td>Shipping : </td>
-                    <td>{{ records[0].transactions.shipping | currency : records[0].transactions.currency }}</td>
+                    <td data-title="Shipping">{{ records[0].transactions.shipping | currency : records[0].transactions.currency }}</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
                     <td>Total : </td>
-                    <td>{{ records[0].transactions.total_price  | currency : records[0].transactions.currency  }}</td>
+                    <td data-title="Total">{{ records[0].transactions.total_price  | currency : records[0].transactions.currency  }}</td>
                 </tr>
             </tbody>
         </table>
