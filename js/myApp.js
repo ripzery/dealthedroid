@@ -1,28 +1,29 @@
-var myApp = angular.module('myApp', ['ui.router']);
+var myApp = angular.module('myApp', ['ui.router','angular.css.injector']);
 
 // define route and controller for each view
-myApp.config(function ($stateProvider, $urlRouterProvider) {
+myApp.config(function ($stateProvider, $urlRouterProvider, cssInjectorProvider) {
     $urlRouterProvider.otherwise("/welcome");
     $stateProvider
         .state('welcome', {
             url: '/welcome',
             views: {
-                "navbar":{
-                    templateUrl: "header.html"
+                "navbar": {
+                    templateUrl: "header.html",
+                    controller: "welcomeController"
                 },
-                "content":{
+                "content": {
                     templateUrl: "welcome.html"
                 }
-            },
-            controller: 'welcomeController'
+            }
         })
         .state('signup', {
             url: '/signup',
             views: {
-                "navbar":{
-                    templateUrl: "header.html"
+                "navbar": {
+                    templateUrl: "header.html",
+                    controller: 'formController'
                 },
-                "content":{
+                "content": {
                     templateUrl: "signup.html",
                     controller: 'formController'
                 }
@@ -31,24 +32,66 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         .state('login', {
             url: '/login',
             views: {
-                "navbar":{
-                    templateUrl: "header.html"
+                "navbar": {
+                    templateUrl: "header.html",
+                    controller: 'formController'
                 },
-                "content":{
+                "content": {
                     templateUrl: "login.html",
                     controller: 'formController'
                 }
             }
         });
+
+    //cssInjectorProvider.setSinglePageMode(true);
 });
 
-myApp.controller('welcomeController', function ($scope) {
+myApp.controller('welcomeController', function ($scope, cssInjector,themeService) {
+    cssInjector.removeAll();
+    $scope.theme = themeService.theme;
+    if ($scope.theme == "bootstrap-backup") {
+        $scope.labelTheme = "white";
+    } else {
+        $scope.labelTheme = "";
+    }
+    cssInjector.add("library/css/"+ $scope.theme +".css");
+    $scope.bootstraps = themeService.bootstraps;
 
+    $scope.themeChange = function(theme){
+        themeService.setTheme($scope.theme);
+        cssInjector.removeAll();
+        cssInjector.add("library/css/" + theme + ".css");
+        if(theme == "bootstrap-backup"){
+            $scope.labelTheme = "white";
+        }else{
+            $scope.labelTheme = "";
+        }
+    };
 });
 
 
 // define controller for form validation
-myApp.controller('formController', function ($scope,$http) {
+myApp.controller('formController', function ($scope, $http, cssInjector, themeService) {
+    cssInjector.removeAll();
+    $scope.theme = themeService.theme;
+    if ($scope.theme == "bootstrap-backup") {
+        $scope.labelTheme = "white";
+    } else {
+        $scope.labelTheme = "";
+    }
+    cssInjector.add("library/css/"+ $scope.theme +".css");
+    $scope.bootstraps = themeService.bootstraps;
+
+    $scope.themeChange = function(theme) {
+        themeService.setTheme($scope.theme);
+        cssInjector.removeAll();
+        cssInjector.add("library/css/" + theme + ".css");
+        if (theme == "bootstrap-backup") {
+            $scope.labelTheme = "white";
+        } else {
+            $scope.labelTheme = "";
+        }
+    };
 
     // define rule that permit form submitted if the value is match the rule
     $scope.passwordrule = "myForm.password.$invalid && myForm.password.$dirty";
@@ -73,7 +116,7 @@ myApp.controller('formController', function ($scope,$http) {
 
         $http.post("database/authen.php", {username: $scope.username, password: $scope.password})
             .success(function (result) {
-                switch (result){
+                switch (result) {
                     case "admin":
                         $scope.loginStatus = true;
                         window.location.href = "main/management.html#/stock";
@@ -88,6 +131,27 @@ myApp.controller('formController', function ($scope,$http) {
                 }
             });
     };
+});
+
+myApp.service('themeService', function () {
+
+    this.theme = "bootstrap-backup";
+
+    this.setTheme = function(theme){
+      this.theme = theme;
+    };
+
+    this.bootstraps = [
+        {name: 'Paper', url: 'bootstrap'},
+        {name: 'Flatly', url: 'bootstrap-backup'}
+    ];
+
+});
+
+myApp.controller('mainController',function($scope,themeService){
+    $scope.css = themeService.theme;
+    $scope.bootstraps = themeService.bootstraps;
+
 });
 
 // define Angularjs' directive to check if two input password is the same

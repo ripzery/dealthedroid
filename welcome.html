@@ -1,17 +1,54 @@
-<link rel="stylesheet" type="text/css" href="css/bloc.css">
 <link rel="stylesheet" type="text/css" href="library/css/font-awesome.min.css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
       type="text/css">
 <style>
+    @media (max-width: 768px) {
+        .title{
+            color: #000000;
+            font-weight: 100;
+            font-family: 'Lato';
+            margin-bottom: 40px;
+            font-size: 42px;
+        }
+    }
 
-    .title {
-        color: #000000;
-        font-weight: 100;
-        font-family: 'Lato';
-        font-size: 96px;
-        margin-bottom: 40px;
+    @media (min-width: 769px) {
+        .title{
+            color: #000000;
+            font-weight: 100;
+            font-family: 'Lato';
+            margin-bottom: 40px;
+            font-size: 48px;
+        }
+    }
 
+    @media (min-width: 992px) {
+        .title{
+            color: #000000;
+            font-weight: 100;
+            font-family: 'Lato';
+            margin-bottom: 40px;
+            font-size: 64px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .title{
+            color: #000000;
+            font-weight: 100;
+            font-family: 'Lato';
+            margin-bottom: 40px;
+            font-size: 96px;
+        }
+    }
+
+    .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+
+        display: flex;
+        align-items: center;
     }
 
     .container2 {
@@ -31,171 +68,12 @@
     }
 </style>
 <div class="container2">
-    <div class="content">
-        <div class="bloc l-bloc" style="margin-top: 8%;">
-            <div class="container bloc-lg">
+    <!--<div class="content">-->
+        <div class="vertical-center">
+            <div class="container">
                 <div class="title">DEALTHEDROID</div>
                 <div class="quote">Biggest stock of droids!</div>
             </div>
         </div>
-        <!-- bloc-1 -->
-        <div class="bloc l-bloc feature-list" style="margin-top: 100px;" id="bloc-1">
-            <div class="container bloc-lg">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h2 class="text-center mg-md">
-                            Expert service with unbeatable price.
-                        </h2>
-                    </div>
-                </div>
-                <div class="row voffset">
-                    <div class="col-sm-6">
-                        <div class="col-sm-9">
-                            <h3 class="text-right mg-md">
-                                Price Match Guarantee
-                            </h3>
-
-                            <p class="text-right">
-                                We'll match the product prices of key online and local competitors. 
-                            </p>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="text-center">
-                                <span class="fa fa-tasks icon-round icon-md"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-sm-3">
-                            <div class="text-center">
-                                <span class="fa fa-heart icon-round icon-md"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <h3 class="mg-md">
-                                100% Genuine
-                            </h3>
-
-                            <p>
-                                We can certify that all of our products are absolutely genuine.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row voffset">
-                    <div class="col-sm-6">
-                        <div class="col-sm-9">
-                            <h3 class="text-right mg-md">
-                                Free Shipping
-                            </h3>
-
-                            <p class="text-right">
-                                Free international shipping on orders $200 and up.
-                            </p>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="text-center">
-                                <span class="fa fa-rocket icon-round icon-md"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-sm-3">
-                            <div class="text-center">
-                                <span class="fa fa-code icon-round icon-md"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <h3 class="mg-md">
-                                Warranty
-                            </h3>
-
-                            <p>
-                                Buy a new device and get a limited 12-month warranty for manufacturer's defects and malfunctions.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="row voffset">
-                    <div class="col-sm-6">
-                        <div class="col-sm-9">
-                            <h3 class="text-right mg-md">
-                                Friendly and Simple
-                            </h3>
-
-                            <p class="text-right">
-                                Use and understand our website easily for new user.
-                            </p>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="text-center">
-                                <span class="fa fa-pencil icon-round icon-md"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-sm-3">
-                            <div class="text-center">
-                                <span class="fa fa-star icon-round icon-md"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-9">
-                            <h3 class="mg-md">
-                                Feature 6
-                            </h3>
-
-                            <p>
-                                .......
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-        <!-- bloc-1 END -->
-
-        <!-- bloc-2 -->
-        <div class="bloc l-bloc " id="bloc-2">
-            <div class="container bloc-lg">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h2 class="text-center mg-md">
-                            Meet our team
-                        </h2>
-
-                        <p class="sub-heading text-center">
-                            We are a group of skilled individuals.
-                        </p>
-                    </div>
-                </div>
-                <div class="row voffset-lg">
-                    <div class="col-sm-6">
-                        <!-- <img src="assets/phuchit.jpg" class="img-responsive" alt=''/> -->
-
-                        <h3 class="text-center mg-md">
-                            Phuchit Sirimongkolsathien<br>
-                            5413274
-                        </h3>
-
-                        <p class="text-center">
-                            Developer
-                        </p>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- <img src="assets/cat.jpg" class="img-responsive" alt=''/> -->
-
-                        <h3 class="text-center mg-md">
-                            Techasith Techaboonakho<br>
-                            5413263
-                        </h3>
-
-                        <p class="text-center">
-                            Developer
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <!--</div>-->
 </div>

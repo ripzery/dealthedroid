@@ -1,4 +1,4 @@
-<html>
+<html ng-app="myApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,15 +6,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="library/css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" ng-href="library/css/{{ css }}.css">-->
     <link rel="stylesheet" type="text/css" href="library/css/bootstrap-vertical-grid.css">
     <link rel="stylesheet" type="text/css" href="css/freelancer.css">
 
 </head>
 <body>
-<div ng-app="myApp">
+<div>
 
-    <div ui-view="navbar">
+    <div ui-view="navbar" >
 
     </div>
 
@@ -26,9 +26,9 @@
 </div>
 <script src="library/js/jquery.js"></script>
 <script src="library/js/bootstrap.min.js"></script>
-
 <script src="library/js/angular.min.js"></script>
 <script src="library/js/angular-ui-router.js"></script>
+<script src="library/js/angular-css-injector.js"></script>
 <script src="js/myApp.js"></script>
 <!--<script src="js/my-validator.js"></script>-->
 </body>
